@@ -6,13 +6,14 @@
 	<artifactId>aclm</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
-	<name>Awired Common Line Manager</name>
-	<description />
+	<name>Awired Command Line Manager</name>
+	<description>The best command line argument manager for java applications</description>
+	<url>http://aclm.awired.net/</url>
 
 	<parent>
 		<groupId>net.awired.parent.parent-java</groupId>
 		<artifactId>parent-java</artifactId>
-		<version>1.10-SNAPSHOT</version>
+		<version>1.10</version>
 	</parent>
 
 	<dependencies>
@@ -45,4 +46,12 @@
 			<url>http://mvn.awired.net/nexus/content/repositories/snapshots/</url>
 		</repository>
 	</repositories>
+
+	<distributionManagement>
+		<site>
+			<id>awired-web</id>
+			<name>awired web deployment</name>
+			<url>dav:http://projs.awired.net/aclm</url>
+		</site>
+	</distributionManagement>
 </project> 
