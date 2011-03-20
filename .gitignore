@@ -1,0 +1,7 @@
+.project
+.classpath
+.checkstyle
+.pmd
+target
+.settings
+test-output

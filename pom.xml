@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.awired.aclm</groupId>
+	<artifactId>aclm</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+	<name>Awired Common Line Manager</name>
+	<description />
+
+	<parent>
+		<groupId>net.awired.parent.parent-java</groupId>
+		<artifactId>parent-java</artifactId>
+		<version>1.10-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>5.8</version>
+			<scope>test</scope>
+			<classifier>jdk15</classifier>
+		</dependency>
+
+		<!-- ajsl -->
+		<!-- <dependency> -->
+		<!-- <groupId>net.awired.ajsl</groupId> -->
+		<!-- <artifactId>ajsl-core</artifactId> -->
+		<!-- <version>1.0-ALPHA5</version> -->
+		<!-- </dependency> -->
+	</dependencies>
+
+	<!-- additionnal maven repositories -->
+	<repositories>
+		<repository>
+			<id>awired-repo</id>
+			<name>Awired Releases Repository</name>
+			<url>http://mvn.awired.net/nexus/content/repositories/releases/</url>
+		</repository>
+		<repository>
+			<id>awired-snap-repo</id>
+			<name>Awired Snapshots Repository</name>
+			<url>http://mvn.awired.net/nexus/content/repositories/snapshots/</url>
+		</repository>
+	</repositories>
+</project> 
