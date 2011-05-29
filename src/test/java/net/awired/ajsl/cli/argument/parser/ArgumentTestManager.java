@@ -1,4 +1,4 @@
-package net.awired.ajsl.cli.argument.implementation;
+package net.awired.ajsl.cli.argument.parser;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -14,7 +14,6 @@ import net.awired.ajsl.cli.param.CliParamInetAddress;
 import net.awired.ajsl.cli.param.CliParamInt;
 
 public class ArgumentTestManager extends CliArgumentManager {
-
     public final CliTwoParamArgument<InetAddress, Integer>  address;
     public final CliOneParamArgument<Integer>               port;
     public final CliOneParamArgument<Scenarios>             scenario;
@@ -34,9 +33,10 @@ public class ArgumentTestManager extends CliArgumentManager {
     public ArgumentTestManager() {
         super("enumArgumentTest");
         // -a address
-        address = new CliTwoParamArgument<InetAddress, Integer>('a', new CliParamInetAddress("ip")
-                .setParamDescription("ip very long description to check return to a new line"), new CliParamInt("num")
-                .setParamDescription("num description"));
+        address = new CliTwoParamArgument<InetAddress, Integer>('a',
+                new CliParamInetAddress("ip")
+                        .setParamDescription("ip very long description to check return to a new line"),
+                new CliParamInt("num").setParamDescription("num description"));
         try {
             address.setParamOneDefValue(InetAddress.getByName("127.0.0.1"));
             address.setParamTwoDefValue(23);
@@ -44,8 +44,7 @@ public class ArgumentTestManager extends CliArgumentManager {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        address
-                .setDescription("Set the server address where to connect and this part is long to chdck return to a new line");
+        address.setDescription("Set the server address where to connect and this part is long to chdck return to a new line");
         addArg(address);
 
         // -m
@@ -98,15 +97,6 @@ public class ArgumentTestManager extends CliArgumentManager {
 
         setNewLine("\n");
 
-        ///////////////////////
-
-        //address.addNeededArgument(port);
-        //port.addNeededArgument(transactions);
-        //address.addNeededArgument(scenario);
-        //scenario.addNeededArgument(transactions);
-        //address.addForbiddenArgument(transactions);
-
-        // setUsageShort(true);
     }
 
 }

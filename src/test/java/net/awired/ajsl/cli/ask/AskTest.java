@@ -3,7 +3,7 @@ package net.awired.ajsl.cli.ask;
 import java.io.StringBufferInputStream;
 import junit.framework.Assert;
 import net.awired.ajsl.cli.param.CliParamEnum;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 public class AskTest {
 
