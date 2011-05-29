@@ -62,7 +62,7 @@ public class CliArgumentManagerTest {
         check(enumargtest);
     }
 
-    //  @Test(dataProvider = DATA_NAME)
+    @Test(dataProvider = DATA_NAME)
     public void check(CliArgumentTestIface<CliArgumentManager> enumargtest) {
         CliArgumentManager manager = enumargtest.getManager();
 
