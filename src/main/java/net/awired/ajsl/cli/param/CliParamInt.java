@@ -18,7 +18,7 @@ public class CliParamInt extends CliParam<Integer> {
         try {
             value = Integer.parseInt(param);
         } catch (NumberFormatException e) {
-            throw new CliArgumentParseException(param + " is not a valid number");
+            throw new CliArgumentParseException(param + " is not a valid Integer");
         }
 
         if (!zeroable && value == 0) {
