@@ -5,9 +5,10 @@
 	<groupId>net.awired.aclm</groupId>
 	<artifactId>aclm</artifactId>
 	<version>1.0</version>
+
 	<packaging>jar</packaging>
 	<name>Awired Command Line Manager</name>
-	<description>The best command line argument manager for java applications</description>
+	<description>Better command line argument manager for java applications</description>
 	<url>http://aclm.awired.net/</url>
 
 	<parent>
@@ -24,29 +25,5 @@
 			<scope>test</scope>
 			<classifier>jdk15</classifier>
 		</dependency>
-
-		<!-- ajsl -->
-		<!-- <dependency> -->
-		<!-- <groupId>net.awired.ajsl</groupId> -->
-		<!-- <artifactId>ajsl-core</artifactId> -->
-		<!-- <version>1.0-ALPHA5</version> -->
-		<!-- </dependency> -->
 	</dependencies>
-
-	<!-- additionnal maven repositories -->
-	<repositories>
-		<repository>
-			<id>awired</id>
-			<name>Awired Public Repository</name>
-			<url>http://mvn.awired.net/nexus/content/groups/public/</url>
-		</repository>
-	</repositories>
-
-	<distributionManagement>
-		<site>
-			<id>awired-web</id>
-			<name>awired web deployment</name>
-			<url>dav:http://projs.awired.net/aclm</url>
-		</site>
-	</distributionManagement>
 </project> 

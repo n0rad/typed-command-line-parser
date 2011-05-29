@@ -14,6 +14,10 @@ import org.testng.annotations.Test;
  */
 public class CliArgumentTest {
 
+    /**
+     * Test method for
+     * {@link net.net.awired.ajsl.cli.argument.interfaces.CliArgument#compareTo(net.net.awired.ajsl.cli.argument.interfaces.CliArgument)}.
+     */
     @Test
     public void testCompareTo() {
         CliArgument arg1 = new CliNoParamArgument('S');
@@ -23,6 +27,9 @@ public class CliArgumentTest {
         Assert.assertEquals(-1, arg2.compareTo(arg1));
     }
 
+    /**
+     * Test method for {@link net.net.awired.ajsl.cli.argument.interfaces.CliArgument#CliArgument(char)}.
+     */
     @Test
     public void testCliArgument() {
         CliArgument argument = new CliNoParamArgument('s');
@@ -39,6 +46,9 @@ public class CliArgumentTest {
         Assert.assertTrue(test);
     }
 
+    /**
+     * Test method for {@link net.net.awired.ajsl.cli.argument.interfaces.CliArgument#isMulticall()}.
+     */
     @Test
     public void testIsMulticall() {
         CliArgument argument = new CliNoParamArgument('s');
