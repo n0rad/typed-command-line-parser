@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.awired.aclm</groupId>
 	<artifactId>aclm</artifactId>
-	<version>1.0</version>
+	<version>1.0-SNAPSHOT</version>
 
 	<packaging>jar</packaging>
 	<name>Awired Command Line Manager</name>
@@ -17,6 +17,24 @@
 		<version>1.11-SNAPSHOT</version>
 	</parent>
 
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments />
+		</license>
+	</licenses>
+
+
+	<developers>
+		<developer>
+			<id>n0rad</id>
+			<name>Arnaud Lemaire</name>
+			<email>dev@norad.fr</email>
+		</developer>
+	</developers>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -24,4 +42,21 @@
 			<version>4.8.2</version>
 		</dependency>
 	</dependencies>
+
+	<!-- distribution -->
+	<distributionManagement>
+		<site>
+			<id>awired-web</id>
+			<name>awired web deployment</name>
+			<url>dav:http://projs.awired.net/acml</url>
+		</site>
+	</distributionManagement>
+	
+	<repositories>
+		<repository>
+			<id>awired</id>
+			<name>Awired public</name>
+			<url>http://mvn.awired.net/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
 </project> 
