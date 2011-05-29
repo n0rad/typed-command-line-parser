@@ -142,7 +142,7 @@ public enum ArgumentTestEnum implements CliArgumentTestIface<ArgumentTestManager
     },
 
     SHORT_APPENDED_PARAMED_FAIL2(new String[] { "-lvp", "-l" },
-            "enumArgumentTest: -l is not a valid number -- [ -p port ]\n" + "  enumArgumentTest -lvp -l\n"
+            "enumArgumentTest: -l is not a valid Integer -- [ -p port ]\n" + "  enumArgumentTest -lvp -l\n"
                     + "________________________^\n" + "Usage: enumArgumentTest [ -amvlps ] [ transactions num ]\n"
                     + "Try `enumArgumentTest --help' for more information.\n", null) {
         @Override
@@ -235,9 +235,9 @@ public enum ArgumentTestEnum implements CliArgumentTestIface<ArgumentTestManager
     },
 
     SHORT_APPENDED_PARAMED_DBLE_FAIL(new String[] { "-lpz", "z" },
-            "enumArgumentTest: z is not a valid number -- [ -p port ]\n" + "  enumArgumentTest -lpz z\n"
+            "enumArgumentTest: z is not a valid Integer -- [ -p port ]\n" + "  enumArgumentTest -lpz z\n"
                     + "________________________^\n" + "May be the root cause : \n"
-                    + "    z is not a valid number -- [ -p port ]\n" + "      enumArgumentTest -lpz z\n"
+                    + "    z is not a valid Integer -- [ -p port ]\n" + "      enumArgumentTest -lpz z\n"
                     + "__________________________^\n" + "Usage: enumArgumentTest [ -amvlps ] [ transactions num ]\n"
                     + "Try `enumArgumentTest --help' for more information.\n", null) {
         @Override
@@ -248,9 +248,9 @@ public enum ArgumentTestEnum implements CliArgumentTestIface<ArgumentTestManager
     },
 
     SHORT_APPENDED_2PARAM(new String[] { "-lpa", "127.0.0.1", "43" },
-            "enumArgumentTest: 127.0.0.1 is not a valid number -- [ -p port ]\n"
+            "enumArgumentTest: 127.0.0.1 is not a valid Integer -- [ -p port ]\n"
                     + "  enumArgumentTest -lpa 127.0.0.1 43\n" + "________________________^\n"
-                    + "May be the root cause : \n" + "    a is not a valid number -- [ -p port ]\n"
+                    + "May be the root cause : \n" + "    a is not a valid Integer -- [ -p port ]\n"
                     + "      enumArgumentTest -lpa 127.0.0.1 43\n" + "__________________________^\n"
                     + "Usage: enumArgumentTest [ -amvlps ] [ transactions num ]\n"
                     + "Try `enumArgumentTest --help' for more information.\n", null) {

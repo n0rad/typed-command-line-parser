@@ -8,7 +8,9 @@ public class CliArgumentParseException extends Exception {
     private static final long serialVersionUID = 1L;
 
     private CliArgument       currentArgument  = null;
+    /** null if not set */
     private int               argsNum;
+    /** null if not set */
     private int               argsPos;
 
     public CliArgumentParseException(String msg) {
