@@ -2,23 +2,23 @@ package net.awired.ajsl.cli.param;
 
 import net.awired.ajsl.cli.argument.CliArgumentParseException;
 
-public class CliParamInt extends CliParam<Integer> {
+public class CliParamDouble extends CliParam<Double> {
 
     private boolean zeroable    = true;
 
     private boolean negativable = true;
 
-    public CliParamInt(String name) {
+    public CliParamDouble(String name) {
         super(name);
     }
 
     @Override
-    public Integer parse(String param) throws CliArgumentParseException {
-        int value;
+    public Double parse(String param) throws CliArgumentParseException {
+        double value;
         try {
-            value = Integer.parseInt(param);
+            value = Double.parseDouble(param);
         } catch (NumberFormatException e) {
-            throw new CliArgumentParseException(param + " is not a valid Integer");
+            throw new CliArgumentParseException(param + " is not a valid double");
         }
 
         if (!zeroable && value == 0) {
