@@ -234,7 +234,7 @@ public class DefinitionTest {
     }
 
     @Test
-    public void CIRCULAR_FORBIDDEN1() throws Exception {
+    public void CIRCULAR_FORBIDDEN1() {
         argRule.manager = new CliArgumentManager("argumentTestDefinition") {
             private final CliOneParamArgument<Integer> arg2;
             private final CliNoParamArgument           arg3;
@@ -266,7 +266,7 @@ public class DefinitionTest {
     }
 
     @Test
-    public void CIRCULAR_FORBIDDEN2() throws Exception {
+    public void CIRCULAR_FORBIDDEN2() {
         argRule.manager = new CliArgumentManager("argumentTestDefinition") {
             private final CliOneParamArgument<Integer> arg2;
             private final CliNoParamArgument           arg3;
@@ -297,7 +297,7 @@ public class DefinitionTest {
     }
 
     @Test
-    public void CIRCULAR_FORBIDDEN3() throws Exception {
+    public void CIRCULAR_FORBIDDEN3() {
         argRule.manager = new CliArgumentManager("argumentTestDefinition") {
             private final CliOneParamArgument<Integer> arg2;
             private final CliNoParamArgument           arg3;
@@ -332,7 +332,7 @@ public class DefinitionTest {
     }
 
     @Test
-    public void CIRCULAR_FORBIDDEN4() throws Exception {
+    public void CIRCULAR_FORBIDDEN4() {
         argRule.manager = new CliArgumentManager("argumentTestDefinition") {
             private final CliOneParamArgument<Integer> arg2;
             private final CliNoParamArgument           arg3;
@@ -369,7 +369,7 @@ public class DefinitionTest {
     }
 
     @Test
-    public void CIRCULAR_FORBIDDEN5() throws Exception {
+    public void CIRCULAR_FORBIDDEN5() {
         argRule.manager = new CliArgumentManager("argumentTestDefinition") {
             private final CliOneParamArgument<Integer> arg2;
             private final CliNoParamArgument           arg3;
@@ -401,7 +401,7 @@ public class DefinitionTest {
     }
 
     @Test
-    public void CIRCULAR_FORBIDDEN6() throws Exception {
+    public void CIRCULAR_FORBIDDEN6() {
         argRule.manager = new CliArgumentManager("argumentTestDefinition") {
             private final CliOneParamArgument<Integer> arg2;
             private final CliNoParamArgument           arg3;

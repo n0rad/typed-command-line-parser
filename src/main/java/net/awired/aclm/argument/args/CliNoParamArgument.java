@@ -79,6 +79,7 @@ public class CliNoParamArgument implements CliArgument {
      * @param other
      * @return the comparison result
      */
+    @Override
     public int compareTo(CliArgument other) {
         // equal
         if (getCharName() == other.getCharName()) {
@@ -126,6 +127,7 @@ public class CliNoParamArgument implements CliArgument {
      * 
      * @return true if this argument can be call more than 1 time
      */
+    @Override
     public boolean isMulticall() {
         return getMultiCallMax() > 1 || getMultiCallMax() == 0;
     }
@@ -146,6 +148,7 @@ public class CliNoParamArgument implements CliArgument {
     /**
      * Reset the current parse result stored in this argument.
      */
+    @Override
     public void reset() {
         numCall = 0;
     }
@@ -166,6 +169,7 @@ public class CliNoParamArgument implements CliArgument {
         return null;
     }
 
+    @Override
     public void checkParse(List<CliArgument> arguments) throws CliArgumentParseException {
 
         // check mandatroy
@@ -177,46 +181,51 @@ public class CliNoParamArgument implements CliArgument {
         if (numCall > 0 && numCall < multiCallMin) {
             throw new CliArgumentParseException("argument must be called minimum " + multiCallMin + " times", this);
         }
+
+    }
+
+    @Override
+    public void parse(List<String> args) throws CliArgumentParseException {
+        numCall++;
+
         if (multiCallMax != 0 && numCall > 0 && numCall > multiCallMax) {
             throw new CliArgumentParseException("argument must be called maximum " + multiCallMax + " times", this);
         }
     }
 
     @Override
-    public void parse(List<String> args) throws CliArgumentParseException {
-        numCall++;
-    }
-
     public void checkDefinition() {
         if (multiCallMin < 1) {
-            throw new RuntimeException("multicall minimum can not be less than 1");
+            throw new CliArgumentDefinitionException("multicall minimum can not be less than 1");
         }
         if (multiCallMax < 0) {
-            throw new RuntimeException("multicall maximum can not be less than 0");
+            throw new CliArgumentDefinitionException("multicall maximum can not be less than 0");
         }
         if (multiCallMax != 0 && multiCallMin > multiCallMax) {
-            throw new RuntimeException("multicall maximum can not be less than minimum");
+            throw new CliArgumentDefinitionException("multicall maximum can not be less than minimum");
         }
     }
 
     public void addForbiddenArgument(CliArgument argument) {
         if (argument == this) {
-            throw new RuntimeException("argument can not contain himself as forbidden");
+            throw new CliArgumentDefinitionException("argument can not contain himself as forbidden");
         }
         forbiddenArguments.add(argument);
     }
 
     public void addNeededArgument(CliArgument argument) {
         if (argument == this) {
-            throw new RuntimeException("argument can not contain himself as needed");
+            throw new CliArgumentDefinitionException("argument can not contain himself as needed");
         }
         neededArguments.add(argument);
     }
 
+    @Override
     public String toStringArgument() {
         return null;
     }
 
+    @Override
     public String toString() {
         StringBuffer s = new StringBuffer();
         if (!mandatory) {
@@ -226,7 +235,7 @@ public class CliNoParamArgument implements CliArgument {
 
         String res = toStringArgument();
         if (res != null && !res.isEmpty()) {
-            s.append(" ");
+            s.append(' ');
             s.append(res);
         }
         if (isMulticall()) {
@@ -256,6 +265,7 @@ public class CliNoParamArgument implements CliArgument {
         }
     }
 
+    @Override
     public boolean isSet() {
         return !(numCall == 0);
     }
@@ -267,6 +277,7 @@ public class CliNoParamArgument implements CliArgument {
 
     // //////////////////////////////////////////////////////////////////////
 
+    @Override
     public String getDescription() {
         return this.description;
     }
@@ -275,10 +286,12 @@ public class CliNoParamArgument implements CliArgument {
         this.description = description;
     }
 
+    @Override
     public String getShortName() {
         return this.shortName;
     }
 
+    @Override
     public boolean isUsageHidden() {
         return this.usageHidden;
     }
@@ -287,6 +300,7 @@ public class CliNoParamArgument implements CliArgument {
         this.usageHidden = usageHidden;
     }
 
+    @Override
     public boolean isHelpHidden() {
         return this.helpHidden;
     }
@@ -295,6 +309,7 @@ public class CliNoParamArgument implements CliArgument {
         this.helpHidden = helpHidden;
     }
 
+    @Override
     public boolean isMandatory() {
         return mandatory;
     }
@@ -303,10 +318,12 @@ public class CliNoParamArgument implements CliArgument {
         this.mandatory = mandatory;
     }
 
+    @Override
     public List<CliArgument> getForbiddenArguments() {
         return forbiddenArguments;
     }
 
+    @Override
     public List<CliArgument> getNeededArguments() {
         return neededArguments;
     }
@@ -314,6 +331,7 @@ public class CliNoParamArgument implements CliArgument {
     /**
      * @return the name
      */
+    @Override
     public String getName() {
         return name;
     }
@@ -321,6 +339,7 @@ public class CliNoParamArgument implements CliArgument {
     /**
      * @return the hiddenNames
      */
+    @Override
     public List<String> getHiddenNames() {
         return hiddenNames;
     }
@@ -336,6 +355,7 @@ public class CliNoParamArgument implements CliArgument {
     /**
      * @return the multiCallMin
      */
+    @Override
     public int getMultiCallMin() {
         return multiCallMin;
     }
@@ -344,6 +364,7 @@ public class CliNoParamArgument implements CliArgument {
      * @param multiCallMin
      *            the multiCallMin to set
      */
+    @Override
     public void setMultiCallMin(int multiCallMin) {
         this.multiCallMin = multiCallMin;
     }
@@ -351,6 +372,7 @@ public class CliNoParamArgument implements CliArgument {
     /**
      * @return the multiCallMax
      */
+    @Override
     public int getMultiCallMax() {
         return multiCallMax;
     }
@@ -361,6 +383,7 @@ public class CliNoParamArgument implements CliArgument {
      * @param multiCallMax
      *            the multiCallMax to set
      */
+    @Override
     public void setMultiCallMax(int multiCallMax) {
         this.multiCallMax = multiCallMax;
     }
@@ -368,6 +391,7 @@ public class CliNoParamArgument implements CliArgument {
     /**
      * @return the numCall
      */
+    @Override
     public int getNumCall() {
         return numCall;
     }
@@ -375,6 +399,7 @@ public class CliNoParamArgument implements CliArgument {
     /**
      * @return the numberOfArguments
      */
+    @Override
     public int getNumberOfParams() {
         return NUMBER_OF_PARAMS;
     }
@@ -382,6 +407,7 @@ public class CliNoParamArgument implements CliArgument {
     /**
      * @return the charName
      */
+    @Override
     public char getCharName() {
         return charName;
     }
@@ -399,22 +425,21 @@ public class CliNoParamArgument implements CliArgument {
         return result;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         CliNoParamArgument other = (CliNoParamArgument) obj;
-        if (charName != other.charName)
+        if (charName != other.charName) {
             return false;
+        }
         return true;
     }
 

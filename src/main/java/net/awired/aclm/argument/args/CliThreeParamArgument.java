@@ -9,7 +9,7 @@ import net.awired.aclm.param.CliParam;
 public class CliThreeParamArgument<PARAM_ONE_TYPE, PARAM_TWO_TYPE, PARAM_THREE_TYPE> extends
         CliTwoParamArgument<PARAM_ONE_TYPE, PARAM_TWO_TYPE> {
 
-    private static final int                 NUMBER_OF_PARAMS = 3;
+    private static final int                 NUMBER_OF_PARAMS    = 3;
 
     private List<PARAM_THREE_TYPE>           paramThreeDefValues = new ArrayList<PARAM_THREE_TYPE>();
     private List<PARAM_THREE_TYPE>           paramThreeValues    = paramThreeDefValues;
@@ -86,7 +86,7 @@ public class CliThreeParamArgument<PARAM_ONE_TYPE, PARAM_TWO_TYPE, PARAM_THREE_T
                 || (getParamTwoDefValues() == null && getParamThreeDefValues() != null)
                 && (getParamTwoDefValues().size() != getParamOneDefValues().size() || getParamThreeDefValues().size() != getParamOneDefValues()
                         .size())) {
-            throw new RuntimeException("length of default params values must be equal");
+            throw new CliArgumentDefinitionException("length of default params values must be equal");
         }
     }
 

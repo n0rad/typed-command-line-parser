@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import net.awired.aclm.argument.CliArgumentDefinitionException;
 import net.awired.aclm.argument.CliArgumentParseException;
 import net.awired.aclm.param.CliParam;
 
@@ -53,7 +54,7 @@ public class CliNParamArgument<PARAM_TYPE> extends CliNoParamArgument {
         StringBuffer buff = new StringBuffer();
         boolean flag = false;
         for (CliParam<?> cliArgumentParam : paramArguments) {
-            if (flag == true) {
+            if (flag) {
                 buff.append(' ');
             }
             buff.append(cliArgumentParam.getName());
@@ -112,7 +113,7 @@ public class CliNParamArgument<PARAM_TYPE> extends CliNoParamArgument {
                 tmpsize = 0;
             }
             if (size != -1 && size != tmpsize) {
-                throw new RuntimeException("length of default params values must be equal");
+                throw new CliArgumentDefinitionException("length of default params values must be equal");
             }
             size = tmpsize;
         }

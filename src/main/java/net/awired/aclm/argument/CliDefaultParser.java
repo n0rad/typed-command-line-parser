@@ -131,7 +131,13 @@ public class CliDefaultParser implements CliArgumentParser {
                         return parseShortNameWithAppend(args, position, argument);
                     } else {
                         // -f toto titi (normal form)
-                        argument.parse(buildParamsForArgument(args, position + 1, argument));
+                        try {
+                            argument.parse(buildParamsForArgument(args, position + 1, argument));
+                        } catch (CliArgumentParseException e) {
+                            e.setArgsNum(position);
+                            e.setArgsPos(1);
+                            throw e;
+                        }
                         int readedParsed = parseTypeRead(args, position + argument.getNumberOfParams(), argument);
                         return readedParsed + argument.getNumberOfParams();
                     }
@@ -324,7 +330,12 @@ public class CliDefaultParser implements CliArgumentParser {
                     paramedArg.parse(params);
                 } catch (CliArgumentParseException e) {
                     e.setCurrentArgument(paramedArg);
-                    e.setArgsNum(position + 1 + e.getArgsNum());
+                    int paramFromParse = 0;
+                    if (e.getArgsNum() != null) {
+                        paramFromParse = e.getArgsNum();
+                    }
+                    e.setArgsNum(position + 1 + paramFromParse);
+                    e.setArgsPos(0);
                     if (stickedException != null) {
                         e.initCause(stickedException);
                     }
@@ -357,7 +368,13 @@ public class CliDefaultParser implements CliArgumentParser {
                         }
                         break;
                     }
-                    argument2.parse(null);
+                    try {
+                        argument2.parse(null);
+                    } catch (CliArgumentParseException e) {
+                        e.setArgsNum(position);
+                        e.setArgsPos(i);
+                        throw e;
+                    }
                     break;
                 }
             }

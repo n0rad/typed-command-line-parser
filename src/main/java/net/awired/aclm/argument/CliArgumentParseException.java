@@ -9,9 +9,9 @@ public class CliArgumentParseException extends Exception {
 
     private CliArgument       currentArgument  = null;
     /** null if not set */
-    private int               argsNum;
+    private Integer           argsNum;
     /** null if not set */
-    private int               argsPos;
+    private Integer           argsPos;
 
     public CliArgumentParseException(String msg) {
         super(msg);
@@ -88,7 +88,7 @@ public class CliArgumentParseException extends Exception {
     /**
      * @return the argsNum
      */
-    public int getArgsNum() {
+    public Integer getArgsNum() {
         return argsNum;
     }
 
@@ -96,14 +96,14 @@ public class CliArgumentParseException extends Exception {
      * @param argsNum
      *            the argsNum to set
      */
-    public void setArgsNum(int argsNum) {
+    public void setArgsNum(Integer argsNum) {
         this.argsNum = argsNum;
     }
 
     /**
      * @return the argsPos
      */
-    public int getArgsPos() {
+    public Integer getArgsPos() {
         return argsPos;
     }
 
@@ -111,7 +111,7 @@ public class CliArgumentParseException extends Exception {
      * @param argsPos
      *            the argsPos to set
      */
-    public void setArgsPos(int argsPos) {
+    public void setArgsPos(Integer argsPos) {
         this.argsPos = argsPos;
     }
 

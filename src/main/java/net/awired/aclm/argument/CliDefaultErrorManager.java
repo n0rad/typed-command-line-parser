@@ -79,10 +79,9 @@ public class CliDefaultErrorManager implements CliErrorManager {
         errStream.print(manager.getNewLine());
         if (usagePath && exception instanceof CliArgumentParseException) {
             CliArgumentParseException parseException = (CliArgumentParseException) exception;
-            //TODO THERE
-            //if (parseException.getArgsNum() != null && parseException.getArgsPos() != null) {
-            showPath(args, parseException.getArgsNum(), parseException.getArgsPos(), padding, manager);
-            //}
+            if (parseException.getArgsNum() != null && parseException.getArgsPos() != null) {
+                showPath(args, parseException.getArgsNum(), parseException.getArgsPos(), padding, manager);
+            }
         }
     }
 

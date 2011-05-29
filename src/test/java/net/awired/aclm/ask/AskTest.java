@@ -2,7 +2,6 @@ package net.awired.aclm.ask;
 
 import java.io.StringBufferInputStream;
 import junit.framework.Assert;
-import net.awired.aclm.ask.Ask;
 import net.awired.aclm.param.CliParamEnum;
 import org.junit.Test;
 

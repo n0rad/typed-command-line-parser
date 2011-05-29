@@ -90,9 +90,34 @@ public class ParseTest {
         Assert.assertTrue(argRule.exit);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("enumArgumentTest: argument must be called maximum 4 times -- [ -l ... ]\n"
-                + "  enumArgumentTest -l -l -l -l -l\n" + "___________________^\n"
+                + "  enumArgumentTest -l -l -l -l -l\n" + "________________________________^\n"
                 + "Usage: enumArgumentTest [ -amvlps ] [ transactions num ]\n"
                 + "Try `enumArgumentTest --help' for more information.\n", argRule.err);
+    }
+
+    @Test
+    public void MULTICALL_NOOVERFLOW2() {
+        argRule.setArgs(new String[] { "-lllll" });
+        argRule.runParser();
+
+        Assert.assertTrue(argRule.exit);
+        Assert.assertEquals("", argRule.out);
+        Assert.assertEquals("enumArgumentTest: argument must be called maximum 4 times -- [ -l ... ]\n"
+                + "  enumArgumentTest -lllll\n" + "________________________^\n"
+                + "Usage: enumArgumentTest [ -amvlps ] [ transactions num ]\n"
+                + "Try `enumArgumentTest --help' for more information.\n", argRule.err);
+    }
+
+    @Test
+    public void MULTICALL_NOOVERFLOW() {
+        argRule.setArgs(new String[] { "-llll" });
+        argRule.runParser();
+
+        Assert.assertEquals(4, manager.loop.getNumCall());
+
+        Assert.assertFalse(argRule.exit);
+        Assert.assertEquals("", argRule.out);
+        Assert.assertEquals("", argRule.err);
     }
 
     @Test
