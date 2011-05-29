@@ -356,8 +356,6 @@ public class CliNoParamArgument implements CliArgument {
     }
 
     /**
-     * Set max multicall value, 0 is unlimited.
-     * 
      * @param multiCallMax
      *            the multiCallMax to set
      */

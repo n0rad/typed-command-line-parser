@@ -8,10 +8,8 @@ public class CliArgumentParseException extends Exception {
     private static final long serialVersionUID = 1L;
 
     private CliArgument       currentArgument  = null;
-    /** null if not set */
-    private Integer           argsNum;
-    /** null if not set */
-    private Integer           argsPos;
+    private int               argsNum;
+    private int               argsPos;
 
     public CliArgumentParseException(String msg) {
         super(msg);
@@ -88,7 +86,7 @@ public class CliArgumentParseException extends Exception {
     /**
      * @return the argsNum
      */
-    public Integer getArgsNum() {
+    public int getArgsNum() {
         return argsNum;
     }
 
@@ -103,7 +101,7 @@ public class CliArgumentParseException extends Exception {
     /**
      * @return the argsPos
      */
-    public Integer getArgsPos() {
+    public int getArgsPos() {
         return argsPos;
     }
 

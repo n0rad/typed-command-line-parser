@@ -70,9 +70,7 @@ public class CliArgumentManager {
     public void loadAllNeeded(CliArgument current, Set<CliArgument> result) {
         result.addAll(current.getNeededArguments());
         for (CliArgument cliArgument : current.getNeededArguments()) {
-            if (!result.contains(cliArgument)) {
-                loadAllNeeded(cliArgument, result);
-            }
+            loadAllNeeded(cliArgument, result);
         }
     }
 
