@@ -35,6 +35,12 @@
 		</developer>
 	</developers>
 
+	<scm>
+		<connection>scm:git:git://github.com/awired/aclm.git</connection>
+		<developerConnection>scm:git:git@github.com:awired/aclm.git</developerConnection>
+		<url>http://github.com/awired/aclm</url>
+	</scm>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -51,7 +57,7 @@
 			<url>dav:http://projs.awired.net/acml</url>
 		</site>
 	</distributionManagement>
-	
+
 	<repositories>
 		<repository>
 			<id>awired</id>
