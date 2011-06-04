@@ -185,6 +185,9 @@ public class CliDefaultParser implements CliArgumentParser {
 
     private List<String> buildParamsForArgument(String[] args, int firstParamPos, CliArgument current)
             throws CliArgumentParseException {
+        if (current == null) {
+            throw new CliArgumentParseException("no default argument to parse : " + args[firstParamPos]);
+        }
         if (args.length < firstParamPos + current.getNumberOfParams()) {
             throw new CliArgumentParseException("not enougth params", current);
         }
@@ -390,6 +393,7 @@ public class CliDefaultParser implements CliArgumentParser {
     /**
      * @return the typeRead
      */
+    @Override
     public boolean isTypeRead() {
         return typeRead;
     }
@@ -398,6 +402,7 @@ public class CliDefaultParser implements CliArgumentParser {
      * @param typeRead
      *            the typeRead to set
      */
+    @Override
     public void setTypeRead(boolean typeRead) {
         this.typeRead = typeRead;
     }
@@ -405,6 +410,7 @@ public class CliDefaultParser implements CliArgumentParser {
     /**
      * @return the typeScanShortNameArguments
      */
+    @Override
     public boolean isTypeScanShortNameArguments() {
         return typeScanShortNameArguments;
     }
@@ -413,6 +419,7 @@ public class CliDefaultParser implements CliArgumentParser {
      * @param typeScanShortNameArguments
      *            the typeScanShortNameArguments to set
      */
+    @Override
     public void setTypeScanShortNameArguments(boolean typeScanShortNameArguments) {
         this.typeScanShortNameArguments = typeScanShortNameArguments;
     }
@@ -420,6 +427,7 @@ public class CliDefaultParser implements CliArgumentParser {
     /**
      * @return the typeScanShortName
      */
+    @Override
     public boolean isTypeScanShortName() {
         return typeScanShortName;
     }
@@ -428,6 +436,7 @@ public class CliDefaultParser implements CliArgumentParser {
      * @param typeScanShortName
      *            the typeScanShortName to set
      */
+    @Override
     public void setTypeScanShortName(boolean typeScanShortName) {
         this.typeScanShortName = typeScanShortName;
     }
@@ -435,6 +444,7 @@ public class CliDefaultParser implements CliArgumentParser {
     /**
      * @return the typeScanLongName
      */
+    @Override
     public boolean isTypeScanLongName() {
         return typeScanLongName;
     }
@@ -443,6 +453,7 @@ public class CliDefaultParser implements CliArgumentParser {
      * @param typeScanLongName
      *            the typeScanLongName to set
      */
+    @Override
     public void setTypeScanLongName(boolean typeScanLongName) {
         this.typeScanLongName = typeScanLongName;
     }
@@ -450,6 +461,7 @@ public class CliDefaultParser implements CliArgumentParser {
     /**
      * @return the dashIsArgumentOnly
      */
+    @Override
     public boolean isDashIsArgumentOnly() {
         return dashIsArgumentOnly;
     }
@@ -458,6 +470,7 @@ public class CliDefaultParser implements CliArgumentParser {
      * @param dashIsArgumentOnly
      *            the dashIsArgumentOnly to set
      */
+    @Override
     public void setDashIsArgumentOnly(boolean dashIsArgumentOnly) {
         this.dashIsArgumentOnly = dashIsArgumentOnly;
     }
