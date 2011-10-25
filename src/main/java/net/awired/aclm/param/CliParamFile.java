@@ -9,13 +9,13 @@ public class CliParamFile extends CliParam<File> {
         super(name);
     }
 
-    public boolean canRead;
-    public boolean canWrite;
-    public boolean canExecute;
+    private boolean canRead;
+    private boolean canWrite;
+    private boolean canExecute;
 
-    public boolean isDirectory;
-    public boolean isFile;
-    public boolean isHidden;
+    private boolean isDirectory;
+    private boolean isFile;
+    private boolean isHidden;
 
     @Override
     public File parse(String param) throws CliArgumentParseException {

@@ -8,7 +8,7 @@
 
 	<packaging>jar</packaging>
 	<name>Awired Command Line Manager</name>
-	<description>Better command line argument manager for java applications</description>
+	<description>Better command line manager for java applications</description>
 	<url>http://aclm.awired.net/</url>
 
 	<parent>
@@ -22,7 +22,6 @@
 			<name>The Apache Software License, Version 2.0</name>
 			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
 			<distribution>repo</distribution>
-			<comments />
 		</license>
 	</licenses>
 
@@ -63,15 +62,6 @@
 		</dependency>
 	</dependencies>
 
-	<!-- distribution -->
-	<distributionManagement>
-		<site>
-			<id>awired-web</id>
-			<name>awired web deployment</name>
-			<url>dav:http://projs.awired.net/acml</url>
-		</site>
-	</distributionManagement>
-
 	<repositories>
 		<repository>
 			<id>awired</id>
@@ -80,33 +70,4 @@
 		</repository>
 	</repositories>
 
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.2.1</version>
-				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>net.awired.aclm.Test</mainClass>
-						</manifest>
-					</archive>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>net.awired.aclm.Test</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project> 
