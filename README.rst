@@ -3,7 +3,8 @@ Awired Command Line Manager
 
 ACLM is a Command Line Interface management library, where the main functionnality is a argument parser.
 
-Functionalities provided by the parser are :
+Functionalities
+---------------
 
 * fully typed arguments (no casts : less builds to tests, better code, easy to use in IDE)
 * generated helper using informations defined in your manager
@@ -33,21 +34,26 @@ Functionalities provided by the parser are :
 
 * manager, parser, helper, arguments and params are extensible to match your needs
 * more I may not remember :) 
-                
+
+Composition
+-----------
 
 How the command line is composed in the argument manager
 
 ::
 
  # cut -d ' ' -f 2 file.txt
-   ------------------------ the argument manager scope
+   ------------------------ The argument manager scope
        ------               Argument 'd' that is linked to a param (' ') 
-              ----          Argument 'f' that is linked to a param (2-3)
-                     ------ Default argument of the arguement manager (this mean that this param is not link to a argument)
+              ----          Argument 'f' that is linked to a param (2)
+                   -------- Default argument of the arguement manager (this mean that this param is not linked to a argument)
           ---               Param of 'd' argument
                  -          Param of 'f' argument
 
-For this command you will define the current manager like that in ACLM :
+Usage Example
+-------------
+
+For this command you will define a manager like that in ACLM :
 
 ::
 
