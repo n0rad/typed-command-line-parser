@@ -6,17 +6,17 @@ ACLM is a Command Line Interface management library, where the main functionnali
 Functionalities provided by the parser are :
 
 * fully typed arguments (no casts : less builds to tests, better code, easy to use in IDE)
-* Generated helper using informations defined in your manager
-* manage argument with multiple params : ex : -s localhost 8080 -s there 8081
-* manage long names : --server localhost 8080
-* allow read arguments to check if its always values ex : read -f to know if its a param of -r or a new argument ./toto42 -r 1 a 2 b -f 3
-* mutiple same arguement : ./toto42 -p 8080 -p 8081
-* smart params like file : ./toto42 -f file.txt (will fail in cli if file.txt does not exists)
-* smart params like enum : ./toto42 -v debug (will fail if the param of '-v' is an enum and debug does not exists in enum)
-* scan for short names : ./toto42 -vf 3
-* scan for single param after short name list : ./toto -vpf 8080 (means -v -f -p 8080)
-* scan for short names arguments : /toto42 -r 1 a -f3
-* scan long names : ``./toto42 -r 1 a --file=3``
+* generated helper using informations defined in your manager
+* manage argument with multiple params : ``./app -s localhost 8080 -s there 8081``
+* manage long names : ``./app --server localhost 8080``
+* allow read arguments to check if its always values ex : read -f to know if its a param of -r or a new argument ``./toto42 -r 1 a 2 b -f 3``
+* mutiple same arguement : ``./app -p 8080 -p 8081``
+* smart params like file : ``./app -f file.txt`` (will fail in cli if file.txt does not exists)
+* smart params like enum : ``./app -v debug`` (will fail if the param of '-v' is an enum and debug does not exists in enum)
+* scan for short names : ``./app -vf 3``
+* scan for single param after short name list : ``./app -vpf 8080`` (means ``-v -f -p 8080``)
+* scan for short names arguments : ``./app -r 1 a -f3``
+* scan long names : ``./app -r 1 a --file=3``
 * show you where is your error in the cli
 
 ::
