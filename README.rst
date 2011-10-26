@@ -11,7 +11,7 @@ Functionalities
 * manage argument with multiple params : **./app -s localhost 8080 -s there 8081**
 * manage long names : **./app --server localhost 8080**
 * allow read arguments to check if its always values ex : read -f to know if its a param of -r or a new argument **./app -r 1 a 2 b -f 3**
-* mutiple same arguement : **./app -p 8080 -p 8081**
+* mutiple same argument : **./app -p 8080 -p 8081**
 * smart params like file : **./app -f file.txt** (will fail in cli if file.txt does not exists)
 * smart params like enum : **./app -v debug** (will fail if the param of '-v' is an enum and debug does not exists in enum)
 * scan for short names : **./app -vf 3**
@@ -49,8 +49,8 @@ How the command line is composed in the argument manager
                       -------- Default argument (no prefix letter, direct param)
                  ----          Param of 'p' argument
 
-Usage Example
--------------
+Simple Usage Example
+--------------------
 
 For this command you will define a manager like that in ACLM :
 
