@@ -13,8 +13,8 @@
 
 	<parent>
 		<groupId>net.awired.parent.parent-java</groupId>
-		<artifactId>parent-java</artifactId>
-		<version>1.11</version>
+		<artifactId>parent-java-bundle</artifactId>
+		<version>1.13-SNAPSHOT</version>
 	</parent>
 
 	<licenses>
@@ -61,13 +61,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<repositories>
-		<repository>
-			<id>awired</id>
-			<name>Awired public</name>
-			<url>http://mvn.awired.net/nexus/content/groups/public/</url>
-		</repository>
-	</repositories>
 
 </project> 
