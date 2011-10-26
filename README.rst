@@ -108,3 +108,15 @@ And it will generate this helper if you call ./myapp -h :
                            Default Value       : -p 8080
   -v                       put application in verbose mode
 
+
+Advanced Usage
+--------------
+
+
+multiple params
+ single : new CliNoParamArgument(t);
+
+ genre style ouda
+
+test2
+ test2 is done
