@@ -63,7 +63,7 @@ For this command you will define a manager like that in ACLM :
         public final CliOneParamArgument<File>    fileArgument;
 
         public MyAppArgumentManager() {
-            super("myapp");
+            super("myApp");
 
             verboseArgument = new CliNoParamArgument('v');
             verboseArgument.setDescription("put application in verbose mode");
@@ -102,7 +102,7 @@ And it will generate this helper if you call ./myapp -h :
 
 ::
 
- Usage: myapp [ -v ][ -p port ] [ file ]
+ Usage: myApp [ -v ][ -p port ] [ file ]
   -h, --help               This helper
   -p=port                  port                : server port number
                            Default Value       : -p 8080
@@ -114,20 +114,46 @@ Advanced Definition
 
 This part describe how you can configure the Argument manager to match your needs.
 
+If you want to customize the manager you will need to know more information about the composition.
+
+Composition of the Helper :
+
+::
+
+ # ./myapp -h
+ Usage: myapp [ -vp ] [ file ]                                        <-- UsageDisplayer informations
+  -h, --help               This helper                                <-- Helper infos
+  -p=port                  port                : server port number   <-- Helper infos
+                           Default Value       : -p 8080              <-- Helper infos
+  -v                       put application in verbose mode            <-- Helper infos
+
+
+Composition of the ErrorManager :
+ 
+::
+
+ # ./myapp -p -v
+ myapp: -v is not a valid Integer          <-- parsing of the argument error
+   myapp -p -v                             <-- ErrorManager usagePath showing where is the error
+ _________^                                <-- ErrorManager usagePath showing where is the error
+ Usage: myapp [ -vp ] [ file ]             <-- UsageDisplayer informations
+ Try `myapp --help' for more information.  <-- UsageDisplayer informations
+ 
+
 Params
 ------
 
 Available params
- All params included in package start with CliParam*
+ All params included in the lib start with CliParam*
  Some may have methods to increase check when parse for exemple :
- ``CliParamInt.setZeroable(Boolean);``
- ``CliParamInt.setNegativable(Boolean);``
- ``CliParamFile.setIsDirectory(Boolean);``
- ``CliParamFile.setIsFile(Boolean);``
- ``CliParamFile.setIsHidden(Boolean);``
- ``CliParamFile.setCanExecute(Boolean);``
- ``CliParamFile.setCanRead(Boolean);``
- ``CliParamFile.setCanWrite(Boolean);``
+ * ``CliParamInt.setZeroable(Boolean);``
+ * ``CliParamInt.setNegativable(Boolean);``
+ * ``CliParamFile.setIsDirectory(Boolean);``
+ * ``CliParamFile.setIsFile(Boolean);``
+ * ``CliParamFile.setIsHidden(Boolean);``
+ * ``CliParamFile.setCanExecute(Boolean);``
+ * ``CliParamFile.setCanRead(Boolean);``
+ * ``CliParamFile.setCanWrite(Boolean);``
 
 Name
  Params are created with a name in constructor,
@@ -216,8 +242,17 @@ Default value(s)
 Usage
 -----
 
+Usage is a class used by the manager to display information on how to use the application. Its a short helper you are doing it wrong : ``Usage: myApp [ -v ][ -p port ] [ file ]``
+If you have a lot of arguments in you manager you may want to use the ``manager.getUsageDisplayer().setUsageShort(boolean)`` to transform you usage to ``Usage: myapp [ -vp ] [ file ]``
+
+Error manager
+------------
+
+
 Helper
 ------
+
+
 
 Parser
 ------
