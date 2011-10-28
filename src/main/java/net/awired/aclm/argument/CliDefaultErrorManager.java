@@ -12,7 +12,7 @@ import net.awired.aclm.argument.interfaces.CliErrorManager;
  */
 public class CliDefaultErrorManager implements CliErrorManager {
 
-    /** Use the path showing the character where there is a probleme. */
+    /** Use the path showing the character where there is a problem. */
     private boolean usagePath = true;
 
     /////////////////////////////////////////////////////////////////////////////

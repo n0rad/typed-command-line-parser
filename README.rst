@@ -112,7 +112,7 @@ And it will generate this helper if you call ./myapp -h :
 Advanced Definition
 ===================
 
-This part describe how you can configure the Argument manager to match your needs.
+This part describe how you can configure the Argument manager to match your needs. All the code in this section used to be in your argument manager constructor.
 
 If you want to customize the manager you will need to know more information about the composition.
 
@@ -123,9 +123,9 @@ Composition of the Helper :
  # ./myapp -h
  Usage: myapp [ -vp ] [ file ]                                        <-- UsageDisplayer informations
   -h, --help               This helper                                <-- Helper infos
-  -p=port                  port                : server port number   <-- Helper infos
-                           Default Value       : -p 8080              <-- Helper infos
-  -v                       put application in verbose mode            <-- Helper infos
+  -p=port                  port                : server port number   <-- Helper infos with param description
+                           Default Value       : -p 8080              <-- Helper infos with default value
+  -v                       put application in verbose mode            <-- Helper infos with description
 
 
 Composition of the ErrorManager :
@@ -133,7 +133,7 @@ Composition of the ErrorManager :
 ::
 
  # ./myapp -p -v
- myapp: -v is not a valid Integer          <-- parsing of the argument error
+ myapp: -v is not a valid Integer          <-- parsing of the param in error
    myapp -p -v                             <-- ErrorManager usagePath showing where is the error
  _________^                                <-- ErrorManager usagePath showing where is the error
  Usage: myapp [ -vp ] [ file ]             <-- UsageDisplayer informations
@@ -145,7 +145,8 @@ Params
 
 Available params
  All params included in the lib start with CliParam*
- Some may have methods to increase check when parse for exemple :
+ Some may have methods to increase check when parse for example :
+ 
  * ``CliParamInt.setZeroable(Boolean);``
  * ``CliParamInt.setNegativable(Boolean);``
  * ``CliParamFile.setIsDirectory(Boolean);``
@@ -242,27 +243,107 @@ Default value(s)
 Usage
 -----
 
-Usage is a class used by the manager to display information on how to use the application. Its a short helper you are doing it wrong : ``Usage: myApp [ -v ][ -p port ] [ file ]``
-If you have a lot of arguments in you manager you may want to use the ``manager.getUsageDisplayer().setUsageShort(boolean)`` to transform you usage to ``Usage: myapp [ -vp ] [ file ]``
+Short Usage
+ Usage is a class used by the manager to display information on how to use the application. Its a short helper you are doing it wrong : ``Usage: myApp [ -v ][ -p port ] [ file ]``
+ If you have a lot of arguments in you manager you may want to use the ``manager.getUsageDisplayer().setUsageShort(boolean)`` to transform you usage to ``Usage: myapp [ -vp ] [ file ]``
 
 Error manager
 ------------
 
-
+Error path
+ ErrorManager is used by the manager to display informations when the an error occured in parsing. You can disable the path of the error display with ``getErrorManager().setUsagePath(boolean);``
+ 
 Helper
 ------
 
-
+Custom helper
+ The helper is a special argument that stop parsing and display informations about how to use the application. By default the manager
+ already have a default helper bind on ``-h``, ``--help`` and ``/?``. This helper is ``CliDefaultHelperArgument``, and display informations and the stop the JVM. 
+ If you want to change this helper you can do it with ``setHelperArgument(new YourHelperArgument());`` see: **Advanced functionning** to build a helper.
 
 Parser
 ------
 
+You can customize how your parser will work. By default everything is activated ( set...(true) )
+
+Read
+ Read arguments to know if its really an argument or a parameter. in this exemple : read -f to know if its a param of -r or a new argument
+ ``./toto42 -r 1 a 2 b -f 3``
+
+::
+
+ getParser().setTypeRead(typeRead);
+
+
+Scan shortname
+  Scan argument in short form to find if a param is appended to it (only working if argument is a ``CliOneParamArgument``
+  ``./toto42 -r 1 a -f3``
+ 
+::
+
+ getParser().setTypeScanShortName(typeScanShortName);
+     
+Scan shortname argument
+ Scan argument in short form to find if other arguments is appended to it (only working if only one argument in
+ the pool is not a ``CliNoParamArgument`` ). ``./toto42 -vf 3``
+
+::
+ 
+ getParser().setTypeScanShortNameArguments(typeScanShortNameArguments);
+ 
+Scan long name
+ Scan argument in long form to find if a param is appended to it (only working if argument is a ``CliOneParamArgument``
+ ``./toto42 -r 1 a --file=3``
+
+::
+
+ getParser().setTypeScanLongName(typeScanLongName);
+
+Dash is argument only
+ Tell the parser that an argument with a dash (-) can only be an argument and can not be a parameter starting by a dash.
+
+::
+
+ getParser().setDashIsArgumentOnly(dashIsArgumentOnly);
+
 Manager
 -------
 
+Error stream
+ Error Stream is System.err by default, but you can redirect the cli error stream 
+
+:: 
+
+ setErrorStream(PrintStream);
+
+Output stream
+ Output stream is System.out by default, but you can redirect the cli output stream
+ 
+::
+ 
+ setOutputStream(PrintStream);
+
+New line characters
+ The newLine character used in the cli is ``System.getProperty("line.separator")`` but you can change it 
+
+::
+
+ setNewLine(String);
 
 Advanced usage
 ==============
+
+This part describe how you can use the result of a parsing. All the code in this section used to be in your application with access to the manager.
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -274,4 +355,3 @@ to be sure there is no mistake in the definition. If there is an error a ``CliAr
 and is catch by the default parser to display an error and **exit the JVM**. 
 
 
-remove default helper

@@ -34,7 +34,7 @@ public class CliDefaultParser implements CliArgumentParser {
 
     /**
      * Scan argument in short form to find if other arguments is appended to it (only working if only one argument in
-     * the pool is not an {@link CliNoParamArgument} ).
+     * the pool is not a {@link CliNoParamArgument} ).
      * ./toto42 -vf 3
      */
     private boolean           typeScanShortNameArguments = true;

@@ -244,6 +244,7 @@ public class CliArgumentManager {
      *            the helperArgument to set
      */
     public void setHelperArgument(CliHelperArgument helperArgument) {
+        this.arguments.remove(this.helperArgument);
         this.helperArgument = helperArgument;
         this.addArg(helperArgument);
     }
