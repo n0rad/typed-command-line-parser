@@ -90,12 +90,12 @@ You will use it like this :
 
  public static void main(String[] args) {
         String[] args = new String[] { "-v", "-p", "8081", "file.txt" };
-        MyAppArgumentManager cutArgumentManager = new MyAppArgumentManager();
+        MyAppArgumentManager myAppArgumentManager = new MyAppArgumentManager();
         cutArgumentManager.parse(args);
 
-        Integer port = cutArgumentManager.portArgument.getParamOneValue();
-        boolean verbose = cutArgumentManager.verboseArgument.isSet();
-        File file = cutArgumentManager.fileArgument.getParamOneValue();       
+        Integer port = myAppArgumentManager.portArgument.getParamOneValue();
+        boolean verbose = myAppArgumentManager.verboseArgument.isSet();
+        File file = myAppArgumentManager.fileArgument.getParamOneValue();       
  }
 
 And it will generate this helper if you call ./myapp -h :
@@ -220,13 +220,13 @@ Hide in Usage
  that you don't want to appears in Usage)
 
 Mandatory Arguments 
- You can call ``argument.setMandatory(boolean)`` to tell the parser that this argument must appears in the cli
+ You can call ``argument.setMandatory(boolean)`` to tell the parser that this argument must appears in the cli. **By default every arguments are optional ** 
 
 Multicall
  You can set the argument as multicallable to get an array of values (or number of times called for a CliNoParamArgument)
  by calling ``argument.setMulticallMin(int)`` or ``argument.setMulticallMin(int)`` or even ``argument.setMulticall(int)``
  for an exact match of call. Minimum multicall cannot be set to <1, use ``argument.setMandatory(boolean)`` if you want
- to set your argument as optional.
+ to set your argument as optional. ** 1 is min and Max default values, meaning no multicall **
 
 Needed
  You can tell the parser that an argument needs to be set as the same time as another one with ``argument.addNeededArgument(Argument)``
@@ -336,14 +336,56 @@ Advanced usage
 This part describe how you can use the result of a parsing. All the code in this section used to be in your application with access to the manager.
 
 
+Argument
+--------
+
+isSet
+ You can check if an argument is set in the cli
+ 
+::
+
+ boolean verbose = myAppArgumentManager.verboseArgument.isSet();
+
+numcall
+ You can know how many times an argument was set in the cli
+
+::
+
+ int numcall = myAppArgumentManager.verboseArgument.getNumCall();
 
 
 
+get param value
+ You can get a param value in the cli 
+
+::
+
+ Integer port = myAppArgumentManager.portArgument.getParamOneValue();
+ 
+ or if you are using a CliTwoParamArgument :
+ 
+:: 
+ 
+ InetAddress port = myAppArgumentManager.hostPortArgument.getParamOneValue();
+ Integer port = myAppArgumentManager.hostPortArgument.getParamTwoValue();
+
+ **If you are getting values of a param that is not set you will get Null, but if a default value is set you will get the default value.**
 
 
 
+get param values
+ If your changed the multicall value to be more than 1, you **have to** get a list of values instead of a value.
+ 
+::
 
-
+ List<Integer> ports = myAppArgumentManager.portArgument.getParamOneValues();
+ 
+ or if you are using a CliTwoParamArgument :
+ 
+:: 
+ 
+ List<InetAddress> port = myAppArgumentManager.hostPortArgument.getParamOneValues();
+ List<Integer> port = myAppArgumentManager.hostPortArgument.getParamTwoValues();
 
 
 
