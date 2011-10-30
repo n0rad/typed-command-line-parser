@@ -32,8 +32,7 @@ Functionalities
  Usage: enumArgumentTest [ -amvlps ] [ transactions num ]
  Try `enumArgumentTest --help' for more information.
 
-* manager, parser, helper, arguments and params are extensible to match your needs
-* more I may not remember :) 
+* manager, parser, helper, arguments and params are extensible to match your needs 
 
 Composition
 ===========
@@ -147,27 +146,35 @@ Available params
  All params included in the lib start with CliParam*
  Some may have methods to increase check when parse for example :
  
- * ``CliParamInt.setZeroable(Boolean);``
- * ``CliParamInt.setNegativable(Boolean);``
- * ``CliParamFile.setIsDirectory(Boolean);``
- * ``CliParamFile.setIsFile(Boolean);``
- * ``CliParamFile.setIsHidden(Boolean);``
- * ``CliParamFile.setCanExecute(Boolean);``
- * ``CliParamFile.setCanRead(Boolean);``
- * ``CliParamFile.setCanWrite(Boolean);``
+ ::
+
+  CliParamInt.setZeroable(Boolean);
+  CliParamInt.setNegativable(Boolean);
+  CliParamFile.setIsDirectory(Boolean);
+  CliParamFile.setIsFile(Boolean);
+  CliParamFile.setIsHidden(Boolean);
+  CliParamFile.setCanExecute(Boolean);
+  CliParamFile.setCanRead(Boolean);
+  CliParamFile.setCanWrite(Boolean);
 
 Name
  Params are created with a name in constructor,
  this name is used in the usage : ./myapp [ -v ][ -p **port** ] [ **file** ]
- and also in the helper : 
+ and also in the helper 
+ 
+ ::
+
   -h, --help               This helper
-  -p=**port**                  port                : server port number
+  -p=port                  port                : server port number
                            Default Value       : -p 8080
   -v                       put application in verbose mode
 
 Description
  You can add a description to your param with ``param.setDescription(String);``
  this description is used in the helper to describe the param :
+
+ ::
+
   -h, --help               This helper
   -p=port                  port                : **server port number**
                            Default Value       : -p 8080
@@ -176,6 +183,10 @@ Description
 Extend a param
  Extending a param may be needed if you want to add extra parse logic
  just **extend** the param class and override the ``parse(String);`` method
+
+ ::
+ 
+  
 
 Create a param
  To create a param you just have to create a class that extend **CliParam**
@@ -187,12 +198,14 @@ Arguments
 ---------
 
 Available arguments
- **CliNoParamArgument** : for arguments with no param like **-l** in ``ls -l`` 
- **CliOneParamArgument** : for arguments with one param like **-f** in ``cut -f 3``
- **CliTwoParamArgument** : for arguments with Two params if you want to associate 2 values, for example in a performance injector
-  you will need to associate a scenario to a number of client simulated
- **CliThreeParamArgument** : for arguments with Three params (should not happen ?)
- **CliNparamArgument** : for arguments with more params (should really not happen ?. you lose generics and need to cast to access values)
+
+::
+
+  CliNoParamArgument    : arguments with no param like -l in ``ls -l`` 
+  CliOneParamArgument   : arguments with one param like -f in ``cut -f 3``
+  CliTwoParamArgument   : arguments with Two params if you want to associate 2 values, for example in a performance injector you will need to associate a scenario to a number of client simulated
+  CliThreeParamArgument : arguments with Three params (should not happen ?)
+  CliNparamArgument     : arguments with more params (should really not happen ?. you lose generics and need to cast to access values)
 
 Shortname
  Shortname (like **l** in ``ls -l``) is mandatory for all arguments in ACLM.
@@ -201,26 +214,47 @@ Shortname
 
 Name
  You can add a name to your argument to call it with the long form ex : (``ls --all`` for ``ls -a``)
- this name will also be used in the helper to describe the argument
+ This name will also be used in the helper to describe the argument.
  
+ ::
+
+  argument.setName(String);
+
 Hidden names
- You can add additional names (``argument.addHiddenName(String)``) that will be used to call the argument
- but will not be listed in the helper. An example is the ``CliDefaultHelperArgument`` that is used to print helper by default,
- it have the hidden name ``/?`` to be compatible with windows helpers 
+ You can add additional names that will be used to call the argument but will not be listed in the helper.
+ An example is the ``CliDefaultHelperArgument`` that is used to print helper by default, it have the hidden name ``/?`` to be compatible with windows helpers 
+
+ ::
+
+  argument.addHiddenName(String);
 
 Description
- You can set a description of the argument using ``argument.setDescription(String)`` that will be used in the helper
- to describe the argument
+ You can set a description of the argument that will be used in the helper to describe the argument
+
+ ::
+
+  argument.setDescription(String);
 
 Hide in Helper
- You can call ``argument.setHelpHidden(boolean)`` to mark your argument as hidden/shown in the Helper
+ You can mark your argument as hidden/shown in the Helper
+
+ ::
+
+  argument.setHelpHidden(boolean);
 
 Hide in Usage
- You can call ``argument.setHelpHidden(boolean)`` to mark your argument as hidden/shown in the Usage (like -h for helper
- that you don't want to appears in Usage)
+ You can  mark your argument as hidden/shown in the Usage (like -h for helper that you don't want to appears in Usage)
+
+ ::
+
+  argument.setHelpHidden(boolean);
 
 Mandatory Arguments 
- You can call ``argument.setMandatory(boolean)`` to tell the parser that this argument must appears in the cli. **By default every arguments are optional ** 
+ You can tell the parser that this argument must appears in the cli. **By default every arguments are optional ** 
+
+ ::
+
+  argument.setMandatory(boolean);
 
 Multicall
  You can set the argument as multicallable to get an array of values (or number of times called for a CliNoParamArgument)
@@ -229,29 +263,59 @@ Multicall
  to set your argument as optional. ** 1 is min and Max default values, meaning no multicall **
 
 Needed
- You can tell the parser that an argument needs to be set as the same time as another one with ``argument.addNeededArgument(Argument)``
+ You can tell the parser that an argument needs to be set as the same time as another
  
+ ::
+
+  argument.addNeededArgument(Argument);
+
 Forbidden
- You can tell the parser that an argument cannot be set as the same time as another one with ``argument.addForbiddenArgument(Argument)``
+ You can tell the parser that an argument cannot be set as the same time as another one
+
+ ::
+
+  argument.addForbiddenArgument(Argument)
 
 Default value(s)
- You can set default values to parameters with ``CliOneParamArgument.setParamOneDefValue(PARAM_ONE_TYPE);``,  ``CliTwoParamArgument.setParamTwoDefValue(PARAM_TWO_TYPE);``,
- ``CliThreeParamArgument.setParamThreeDefValue(PARAM_THREE_TYPE);``, ``CliNParamArgument.setParamDefaultValue(Param, PARAM_TYPE);``
- or if you set your argument as multicallable you can set list of values with ``CliOneParamArgument.setParamOneDefValues(List<PARAM_ONE_TYPE>);``,
- ``CliTwoParamArgument.setParamTwoDefValues(List<PARAM_TWO_TYPE>);``, ``CliThreeParamArgument.setParamThreeDefValues(List<PARAM_THREE_TYPE>);``, ``CliNParamArgument.setParamDefaultValues(Param, List<PARAM_TYPE>);``
+ You can set default values to parameters that you will get if the param is not set by users
+
+ ::
+
+  CliOneParamArgument.setParamOneDefValue(PARAM_ONE_TYPE);
+  CliTwoParamArgument.setParamTwoDefValue(PARAM_TWO_TYPE);
+  CliThreeParamArgument.setParamThreeDefValue(PARAM_THREE_TYPE);
+  CliNParamArgument.setParamDefaultValue(Param, PARAM_TYPE);
+
+ or if you set your argument as multicallable you can set list of values
+
+ ::
+
+  CliOneParamArgument.setParamOneDefValues(List<PARAM_ONE_TYPE>);
+  CliTwoParamArgument.setParamTwoDefValues(List<PARAM_TWO_TYPE>);
+  CliThreeParamArgument.setParamThreeDefValues(List<PARAM_THREE_TYPE>);
+  CliNParamArgument.setParamDefaultValues(Param, List<PARAM_TYPE>);
 
 Usage
 -----
 
+Usage is a class used by the manager to display information on how to use the application.
+
 Short Usage
- Usage is a class used by the manager to display information on how to use the application. Its a short helper you are doing it wrong : ``Usage: myApp [ -v ][ -p port ] [ file ]``
- If you have a lot of arguments in you manager you may want to use the ``manager.getUsageDisplayer().setUsageShort(boolean)`` to transform you usage to ``Usage: myapp [ -vp ] [ file ]``
+ If you have a lot of arguments in you manager you may use the short argument to transform a usage like this : ``Usage: myApp [ -v ][ -p port ] [ file ]`` to this ``Usage: myapp [ -vp ] [ file ]``
+
+ ::
+
+  manager.getUsageDisplayer().setUsageShort(boolean)
 
 Error manager
 ------------
 
 Error path
- ErrorManager is used by the manager to display informations when the an error occured in parsing. You can disable the path of the error display with ``getErrorManager().setUsagePath(boolean);``
+ ErrorManager is used by the manager to display informations when the an error occured in parsing. You can disable the path of the error display
+
+ :: 
+
+  getErrorManager().setUsagePath(boolean);
  
 Helper
 ------
