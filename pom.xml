@@ -17,14 +17,6 @@
 		<version>1.13-SNAPSHOT</version>
 	</parent>
 
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-
 	<developers>
 		<developer>
 			<id>n0rad</id>
@@ -44,20 +36,11 @@
 			<artifactId>jansi</artifactId>
 			<version>1.6</version>
 		</dependency>
-
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>0.9.26</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.8.2</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
-
 </project> 

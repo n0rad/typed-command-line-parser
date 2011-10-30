@@ -1,6 +1,6 @@
 package net.awired.aclm.ask;
 
-import java.io.StringBufferInputStream;
+import java.io.ByteArrayInputStream;
 import junit.framework.Assert;
 import net.awired.aclm.param.CliParamEnum;
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class AskTest {
         Ask<Transactions> ask = new Ask<Transactions>("Which transaction do you want", new CliParamEnum<Transactions>(
                 "transaction", Transactions.class));
 
-        ask.setIn(new StringBufferInputStream("TRIP"));
+        ask.setIn(new ByteArrayInputStream("TRIP".getBytes()));
         ask.run();
 
         Assert.assertEquals(Transactions.TRIP, ask.getValue());
@@ -29,7 +29,7 @@ public class AskTest {
         Ask<Transactions> ask = new Ask<Transactions>("Which transaction do you want", new CliParamEnum<Transactions>(
                 "transaction", Transactions.class));
 
-        ask.setIn(new StringBufferInputStream(" "));
+        ask.setIn(new ByteArrayInputStream(" ".getBytes()));
         ask.setDefaultValue(Transactions.T001);
         ask.run();
 
@@ -41,7 +41,7 @@ public class AskTest {
         Ask<Transactions> ask = new Ask<Transactions>("Which transaction do you want", new CliParamEnum<Transactions>(
                 "transaction", Transactions.class));
 
-        ask.setIn(new StringBufferInputStream("fdfsdf\r\nT006"));
+        ask.setIn(new ByteArrayInputStream("fdfsdf\r\nT006".getBytes()));
         ask.run();
 
         Assert.assertEquals(Transactions.T006, ask.getValue());

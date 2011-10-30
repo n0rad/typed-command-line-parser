@@ -5,7 +5,6 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import net.awired.aclm.argument.CliArgumentManager;
-import net.awired.aclm.argument.args.CliDefaultHelperArgument;
 import net.awired.aclm.argument.args.CliNoParamArgument;
 import net.awired.aclm.argument.args.CliOneParamArgument;
 import net.awired.aclm.argument.args.CliTwoParamArgument;
@@ -93,10 +92,7 @@ public class ArgumentTestManager extends CliArgumentManager {
         setDefaultArgument(transactions);
 
         getUsageDisplayer().setUsageShort(true);
-        CliDefaultHelperArgument help = (CliDefaultHelperArgument) getHelperArgument();
-
         setNewLine("\n");
-
     }
 
 }

@@ -114,14 +114,12 @@ public class CliDefaultParser implements CliArgumentParser {
     }
 
     private int parseArgument(String[] args, int position, boolean argStop) throws CliArgumentParseException {
-        CliArgument current = defaultArgument;
 
         if (!argStop) {
             for (CliArgument argument : arguments) {
                 if (argument == defaultArgument) {
                     continue;
                 }
-                current = argument;
 
                 // shortname
                 if (args[position].startsWith(argument.getShortName())) {
