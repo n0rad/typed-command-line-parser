@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 	<name>Awired Command Line Manager</name>
 	<description>Better command line manager for java applications</description>
-	<url>http://aclm.awired.net/</url>
+	<url>https://github.com/awired/aclm</url>
 
 	<parent>
 		<groupId>net.awired.parent.parent-java</groupId>
@@ -25,7 +25,6 @@
 		</license>
 	</licenses>
 
-
 	<developers>
 		<developer>
 			<id>n0rad</id>
@@ -33,7 +32,6 @@
 			<email>dev@norad.fr</email>
 		</developer>
 	</developers>
-
 	<scm>
 		<connection>scm:git:git://github.com/awired/aclm.git</connection>
 		<developerConnection>scm:git:git@github.com:awired/aclm.git</developerConnection>
@@ -46,7 +44,7 @@
 			<artifactId>jansi</artifactId>
 			<version>1.6</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
