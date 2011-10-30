@@ -276,24 +276,21 @@ Read
 
 
 Scan shortname
-  Scan argument in short form to find if a param is appended to it (only working if argument is a ``CliOneParamArgument``
-  ``./toto42 -r 1 a -f3``
+ Scan argument in short form to find if a param is appended to it (only working if argument is a ``CliOneParamArgument``) ``./toto42 -r 1 a -f3``
  
  ::
 
   getParser().setTypeScanShortName(boolean);
      
 Scan shortname argument
- Scan argument in short form to find if other arguments is appended to it (only working if only one argument in
- the pool is not a ``CliNoParamArgument`` ). ``./toto42 -vf 3``
+ Scan argument in short form to find if other arguments is appended to it (only working if only one argument in the pool is not a ``CliNoParamArgument`` ). ``./toto42 -vf 3``
 
  ::
  
   getParser().setTypeScanShortNameArguments(boolean);
  
 Scan long name
- Scan argument in long form to find if a param is appended to it (only working if argument is a ``CliOneParamArgument``
- ``./toto42 -r 1 a --file=3``
+ Scan argument in long form to find if a param is appended to it (only working if argument is a ``CliOneParamArgument`` ``./toto42 -r 1 a --file=3``
 
  ::
 
