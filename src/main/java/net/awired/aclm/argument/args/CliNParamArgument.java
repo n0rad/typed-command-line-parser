@@ -9,6 +9,10 @@ import net.awired.aclm.argument.CliArgumentDefinitionException;
 import net.awired.aclm.argument.CliArgumentParseException;
 import net.awired.aclm.param.CliParam;
 
+/**
+ * @deprecated Not fully Tested
+ */
+@Deprecated
 public class CliNParamArgument<PARAM_TYPE> extends CliNoParamArgument {
 
     private final List<CliParam<?>>              paramArguments = new ArrayList<CliParam<?>>();
@@ -146,6 +150,7 @@ public class CliNParamArgument<PARAM_TYPE> extends CliNoParamArgument {
     /**
      * @return the numberOfArguments
      */
+    @Override
     public int getNumberOfParams() {
         return paramArguments.size();
     }

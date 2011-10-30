@@ -6,6 +6,10 @@ import net.awired.aclm.argument.CliArgumentDefinitionException;
 import net.awired.aclm.argument.CliArgumentParseException;
 import net.awired.aclm.param.CliParam;
 
+/**
+ * @deprecated Not fully Tested
+ */
+@Deprecated
 public class CliThreeParamArgument<PARAM_ONE_TYPE, PARAM_TWO_TYPE, PARAM_THREE_TYPE> extends
         CliTwoParamArgument<PARAM_ONE_TYPE, PARAM_TWO_TYPE> {
 
@@ -169,6 +173,7 @@ public class CliThreeParamArgument<PARAM_ONE_TYPE, PARAM_TWO_TYPE, PARAM_THREE_T
     /**
      * @return the numberOfArguments
      */
+    @Override
     public int getNumberOfParams() {
         return NUMBER_OF_PARAMS;
     }
