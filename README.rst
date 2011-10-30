@@ -270,41 +270,41 @@ Read
  Read arguments to know if its really an argument or a parameter. in this exemple : read -f to know if its a param of -r or a new argument
  ``./toto42 -r 1 a 2 b -f 3``
 
-::
+ ::
 
- getParser().setTypeRead(boolean);
+  getParser().setTypeRead(boolean);
 
 
 Scan shortname
   Scan argument in short form to find if a param is appended to it (only working if argument is a ``CliOneParamArgument``
   ``./toto42 -r 1 a -f3``
  
-::
+ ::
 
- getParser().setTypeScanShortName(boolean);
+  getParser().setTypeScanShortName(boolean);
      
 Scan shortname argument
  Scan argument in short form to find if other arguments is appended to it (only working if only one argument in
  the pool is not a ``CliNoParamArgument`` ). ``./toto42 -vf 3``
 
-::
+ ::
  
- getParser().setTypeScanShortNameArguments(boolean);
+  getParser().setTypeScanShortNameArguments(boolean);
  
 Scan long name
  Scan argument in long form to find if a param is appended to it (only working if argument is a ``CliOneParamArgument``
  ``./toto42 -r 1 a --file=3``
 
-::
+ ::
 
- getParser().setTypeScanLongName(boolean);
+  getParser().setTypeScanLongName(boolean);
 
 Dash is argument only
  Tell the parser that an argument with a dash (-) can only be an argument and can not be a parameter starting by a dash.
 
-::
+ ::
 
- getParser().setDashIsArgumentOnly(boolean);
+  getParser().setDashIsArgumentOnly(boolean);
 
 Manager
 -------
@@ -312,23 +312,23 @@ Manager
 Error stream
  Error Stream is System.err by default, but you can redirect the cli error stream 
 
-:: 
+ :: 
 
- setErrorStream(PrintStream);
+  setErrorStream(PrintStream);
 
 Output stream
  Output stream is System.out by default, but you can redirect the cli output stream
  
-::
+ ::
  
- setOutputStream(PrintStream);
+  setOutputStream(PrintStream);
 
 New line characters
  The newLine character used in the cli is ``System.getProperty("line.separator")`` but you can change it 
 
-::
+ ::
 
- setNewLine(String);
+  setNewLine(String);
 
 Advanced usage
 ==============
@@ -342,27 +342,27 @@ Argument
 isSet
  You can check if an argument is set in the cli
  
-::
+ ::
 
- boolean verbose = myAppArgumentManager.verboseArgument.isSet();
+  boolean verbose = myAppArgumentManager.verboseArgument.isSet();
 
 numcall
  You can know how many times an argument was set in the cli
 
-::
+ ::
 
- int numcall = myAppArgumentManager.verboseArgument.getNumCall();
+  int numcall = myAppArgumentManager.verboseArgument.getNumCall();
 
 
 
 get param value
  You can get a param value in the cli 
 
-::
+ ::
 
- Integer port = myAppArgumentManager.portArgument.getParamOneValue();
+  Integer port = myAppArgumentManager.portArgument.getParamOneValue();
  
-or if you are using a CliTwoParamArgument :
+ or if you are using a CliTwoParamArgument :
  
  :: 
  
