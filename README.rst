@@ -272,7 +272,7 @@ Read
 
 ::
 
- getParser().setTypeRead(typeRead);
+ getParser().setTypeRead(boolean);
 
 
 Scan shortname
@@ -281,7 +281,7 @@ Scan shortname
  
 ::
 
- getParser().setTypeScanShortName(typeScanShortName);
+ getParser().setTypeScanShortName(boolean);
      
 Scan shortname argument
  Scan argument in short form to find if other arguments is appended to it (only working if only one argument in
@@ -289,7 +289,7 @@ Scan shortname argument
 
 ::
  
- getParser().setTypeScanShortNameArguments(typeScanShortNameArguments);
+ getParser().setTypeScanShortNameArguments(boolean);
  
 Scan long name
  Scan argument in long form to find if a param is appended to it (only working if argument is a ``CliOneParamArgument``
@@ -297,14 +297,14 @@ Scan long name
 
 ::
 
- getParser().setTypeScanLongName(typeScanLongName);
+ getParser().setTypeScanLongName(boolean);
 
 Dash is argument only
  Tell the parser that an argument with a dash (-) can only be an argument and can not be a parameter starting by a dash.
 
 ::
 
- getParser().setDashIsArgumentOnly(dashIsArgumentOnly);
+ getParser().setDashIsArgumentOnly(boolean);
 
 Manager
 -------
@@ -362,12 +362,12 @@ get param value
 
  Integer port = myAppArgumentManager.portArgument.getParamOneValue();
  
- or if you are using a CliTwoParamArgument :
+or if you are using a CliTwoParamArgument :
  
-:: 
+ :: 
  
- InetAddress port = myAppArgumentManager.hostPortArgument.getParamOneValue();
- Integer port = myAppArgumentManager.hostPortArgument.getParamTwoValue();
+  InetAddress port = myAppArgumentManager.hostPortArgument.getParamOneValue();
+  Integer port = myAppArgumentManager.hostPortArgument.getParamTwoValue();
 
  **If you are getting values of a param that is not set you will get Null, but if a default value is set you will get the default value.**
 
@@ -376,16 +376,16 @@ get param value
 get param values
  If your changed the multicall value to be more than 1, you **have to** get a list of values instead of a value.
  
-::
+ ::
 
- List<Integer> ports = myAppArgumentManager.portArgument.getParamOneValues();
+  List<Integer> ports = myAppArgumentManager.portArgument.getParamOneValues();
  
  or if you are using a CliTwoParamArgument :
  
-:: 
+ :: 
  
- List<InetAddress> port = myAppArgumentManager.hostPortArgument.getParamOneValues();
- List<Integer> port = myAppArgumentManager.hostPortArgument.getParamTwoValues();
+  List<InetAddress> port = myAppArgumentManager.hostPortArgument.getParamOneValues();
+  List<Integer> port = myAppArgumentManager.hostPortArgument.getParamTwoValues();
 
 
 
