@@ -13,13 +13,13 @@ import net.awired.aclm.param.CliParamInetAddress;
 import net.awired.aclm.param.CliParamInt;
 
 public class ArgumentTestManager extends CliArgumentManager {
-    public final CliTwoParamArgument<InetAddress, Integer>  address;
-    public final CliOneParamArgument<Integer>               port;
-    public final CliOneParamArgument<Scenarios>             scenario;
+    public final CliTwoParamArgument<InetAddress, Integer> address;
+    public final CliOneParamArgument<Integer> port;
+    public final CliOneParamArgument<Scenarios> scenario;
     public final CliTwoParamArgument<Transactions, Integer> transactions;
-    public final CliNoParamArgument                         loop;
-    public final CliNoParamArgument                         verbose;
-    public final CliOneParamArgument<Integer>               multicallparamed;
+    public final CliNoParamArgument loop;
+    public final CliNoParamArgument verbose;
+    public final CliOneParamArgument<Integer> multicallparamed;
 
     public enum Transactions {
         TRIP, T001, T002, T006, T246, T247, T244;
@@ -43,6 +43,7 @@ public class ArgumentTestManager extends CliArgumentManager {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        address.setMultiCallMax(0);
         address.setDescription("Set the server address where to connect and this part is long to chdck return to a new line");
         addArg(address);
 

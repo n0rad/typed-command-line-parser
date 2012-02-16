@@ -6,17 +6,17 @@ import java.security.Permission;
 import net.awired.aclm.argument.CliArgumentManager;
 import org.junit.rules.ExternalResource;
 
-public class ArgRule extends ExternalResource {
-    private boolean              parseInProgress = false;
+public class ArgRule<T extends CliArgumentManager> extends ExternalResource {
+    private boolean parseInProgress = false;
     public ByteArrayOutputStream outStream;
     public ByteArrayOutputStream errStream;
 
-    public CliArgumentManager    manager;
-    private String[]             args            = new String[] {};
+    public T manager;
+    private String[] args = new String[] {};
 
-    public String                out;
-    public String                err;
-    public boolean               exit;
+    public String out;
+    public String err;
+    public boolean exit;
 
     public void runParser() {
         outStream = new ByteArrayOutputStream();
@@ -27,9 +27,9 @@ public class ArgRule extends ExternalResource {
         try {
             parseInProgress = true;
             System.out.print("running args :");
-            for (int i = 0; i < args.length; i++) {
+            for (String arg : args) {
                 System.out.print(" ");
-                System.out.print(args[i]);
+                System.out.print(arg);
             }
             System.out.println();
             manager.parse(args);
@@ -48,6 +48,7 @@ public class ArgRule extends ExternalResource {
     @Override
     protected void before() throws Throwable {
         SecurityManager securityManager = new SecurityManager() {
+            @Override
             public void checkPermission(Permission permission) {
                 if (parseInProgress && permission instanceof RuntimePermission
                         && permission.getName().startsWith("exitVM")) {
@@ -74,7 +75,7 @@ public class ArgRule extends ExternalResource {
         this.args = args;
     }
 
-    public CliArgumentManager getManager() {
+    public T getManager() {
         return manager;
     }
 

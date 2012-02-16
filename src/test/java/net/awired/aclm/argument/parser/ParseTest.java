@@ -1,7 +1,9 @@
 package net.awired.aclm.argument.parser;
 
+import static org.junit.Assert.assertEquals;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 import junit.framework.Assert;
 import net.awired.aclm.argument.parser.ArgumentTestManager.Scenarios;
 import net.awired.aclm.help.ArgRule;
@@ -11,7 +13,7 @@ import org.junit.Test;
 public class ParseTest {
 
     @Rule
-    public ArgRule             argRule = new ArgRule();
+    public ArgRule<ArgumentTestManager> argRule = new ArgRule<ArgumentTestManager>();
 
     public ArgumentTestManager manager = new ArgumentTestManager();
 
@@ -27,8 +29,10 @@ public class ParseTest {
         Assert.assertTrue(argRule.exit);
         Assert.assertEquals(1, argRule.manager.getHelperArgument().getNumCall());
         Assert.assertEquals("Usage: enumArgumentTest [ -amvlps ] [ transactions num ]\n"
-                + "  -a=ip num                Set the server address where to connect and this part\n"
+                + "  -a=ip num...             Set the server address where to connect and this part\n"
                 + "                              is long to chdck return to a new line\n"
+                + "                           Multicall minimum   : 1\n"
+                + "                           Multicall maximum   : 0\n"
                 + "                           ip                  : ip very long description to \n"
                 + "                             check return to a new line\n"
                 + "                           num                 : num description\n"
@@ -310,11 +314,12 @@ public class ParseTest {
 
         // -s
         try {
-            Assert.assertEquals(InetAddress.getByName("127.0.0.1"), manager.address.getParamOneValue());
+            Assert.assertEquals(Arrays.asList(InetAddress.getByName("127.0.0.1")),
+                    manager.address.getParamOneValues());
         } catch (UnknownHostException e) {
             Assert.fail(e.getMessage());
         }
-        Assert.assertEquals((Integer) 43, manager.address.getParamTwoValue());
+        Assert.assertEquals(Arrays.asList(43), manager.address.getParamTwoValues());
         // -l
         Assert.assertEquals(2, manager.loop.getNumCall());
 
@@ -375,6 +380,22 @@ public class ParseTest {
                 + "Try `enumArgumentTest --help' for more information.\n", argRule.err);
     }
 
+    @Test
+    public void should_read_multicall_arguments() {
+        argRule.setArgs(new String[] { "-a", "127.0.0.1", "43" });
+        argRule.runParser();
+
+    }
+
+    @Test
+    public void should_read_single_when_multicall_arguments() {
+        argRule.setArgs(new String[] { "-p", "8080", "-a", "127.0.0.1", "43", "-a", "127.0.0.1", "44" });
+        argRule.runParser();
+
+        assertEquals((Integer) 43, argRule.getManager().address.getParamTwoValues().get(0));
+        assertEquals((Integer) 44, argRule.getManager().address.getParamTwoValues().get(1));
+
+    }
     //    SHORT_APPENDED_2PARAM32("-lpa", "127.0.0.1") {
     //        @Override
     //        public void checkResult(CliArgumentManagerTest argManager, boolean exit) {
