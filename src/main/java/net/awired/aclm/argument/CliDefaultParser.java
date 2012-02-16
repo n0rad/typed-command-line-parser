@@ -30,38 +30,38 @@ public class CliDefaultParser implements CliArgumentParser {
      * @param programName
      *            your program name printed on helper
      */
-    private boolean           typeRead                   = true;
+    private boolean typeRead = true;
 
     /**
      * Scan argument in short form to find if other arguments is appended to it (only working if only one argument in
      * the pool is not a {@link CliNoParamArgument} ).
      * ./toto42 -vf 3
      */
-    private boolean           typeScanShortNameArguments = true;
+    private boolean typeScanShortNameArguments = true;
 
     /**
      * Scan argument in short form to find if a param is appended to it (only working if argument is a
      * {@link CliOneParamArgument}).
      * ./toto42 -r 1 a -f3
      */
-    private boolean           typeScanShortName          = true;
+    private boolean typeScanShortName = true;
 
     /**
      * Scan argument in long form to find if a param is appended to it (only working if argument is a
      * {@link CliOneParamArgument}).
      * ./toto42 -r 1 a --file=3
      */
-    private boolean           typeScanLongName           = true;
+    private boolean typeScanLongName = true;
 
     /**
      * Tell the parser that an argument with a dash (-) can only be an argument and can not be a parameter starting by
      * a dash.
      */
-    private boolean           dashIsArgumentOnly         = true;
+    private boolean dashIsArgumentOnly = true;
 
     private List<CliArgument> arguments;
 
-    private CliArgument       defaultArgument;
+    private CliArgument defaultArgument;
 
     private CliHelperArgument helperArgument;
 
@@ -136,7 +136,7 @@ public class CliDefaultParser implements CliArgumentParser {
                             e.setArgsPos(1);
                             throw e;
                         }
-                        int readedParsed = parseTypeRead(args, position + argument.getNumberOfParams(), argument);
+                        int readedParsed = parseTypeRead(args, position + 1 + argument.getNumberOfParams(), argument);
                         return readedParsed + argument.getNumberOfParams();
                     }
                 }
@@ -197,6 +197,10 @@ public class CliDefaultParser implements CliArgumentParser {
     }
 
     private int parseTypeRead(String[] args, int position, CliArgument current) throws CliArgumentParseException {
+        if (position >= args.length) {
+            return 0;
+        }
+
         if (typeRead && current.getNumberOfParams() > 0
                 && (current.getMultiCallMax() == 0 || current.getNumCall() < current.getMultiCallMax())) {
             // FIXME loop to di that more than once
@@ -265,7 +269,8 @@ public class CliDefaultParser implements CliArgumentParser {
                         if (argument2.getNumberOfParams() >= 1) {
                             if (paramedArg != null) {
                                 throw new CliArgumentParseException(
-                                        "Sticked arguments can have only one paramed argument", argument2, position, i);
+                                        "Sticked arguments can have only one paramed argument", argument2, position,
+                                        i);
                             }
                             paramedArgPosition = i;
                             paramedArg = argument2;
