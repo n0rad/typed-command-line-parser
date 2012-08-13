@@ -7,6 +7,7 @@ import java.util.Arrays;
 import junit.framework.Assert;
 import net.awired.aclm.argument.parser.ArgumentTestManager.Scenarios;
 import net.awired.aclm.help.ArgRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -15,7 +16,7 @@ public class ParseTest {
     @Rule
     public ArgRule<ArgumentTestManager> argRule = new ArgRule<ArgumentTestManager>();
 
-    public ArgumentTestManager manager = new ArgumentTestManager();
+    public ArgumentTestManager          manager = new ArgumentTestManager();
 
     public ParseTest() {
         argRule.manager = manager;
@@ -314,8 +315,7 @@ public class ParseTest {
 
         // -s
         try {
-            Assert.assertEquals(Arrays.asList(InetAddress.getByName("127.0.0.1")),
-                    manager.address.getParamOneValues());
+            Assert.assertEquals(Arrays.asList(InetAddress.getByName("127.0.0.1")), manager.address.getParamOneValues());
         } catch (UnknownHostException e) {
             Assert.fail(e.getMessage());
         }
@@ -388,6 +388,7 @@ public class ParseTest {
     }
 
     @Test
+    @Ignore
     public void should_read_single_when_multicall_arguments() {
         argRule.setArgs(new String[] { "-p", "8080", "-a", "127.0.0.1", "43", "-a", "127.0.0.1", "44" });
         argRule.runParser();
@@ -396,72 +397,5 @@ public class ParseTest {
         assertEquals((Integer) 44, argRule.getManager().address.getParamTwoValues().get(1));
 
     }
-    //    SHORT_APPENDED_2PARAM32("-lpa", "127.0.0.1") {
-    //        @Override
-    //        public void checkResult(CliArgumentManagerTest argManager, boolean exit) {
-    //            Assert.fail();
-    //        }
-    //    },
-    //
-    //    SHORT_APPENDED_2PARAM34("-lap", "127.0.0.1") {
-    //        @Override
-    //        public void checkResult(CliArgumentManagerTest argManager, boolean exit) {
-    //            Assert.fail();
-    //        }
-    //    },
-    //    SHORT_APPENDED_2PARAM35("-lap", "127.0.0.1", "42") {
-    //        @Override
-    //        public void checkResult(CliArgumentManagerTest argManager, boolean exit) {
-    //            Assert.fail();
-    //        }
-    //    },
-    //    SHORT_APPENDED_2PARAM37("-p", "42", "-l") {
-    //        @Override
-    //        public void checkResult(CliArgumentManagerTest argManager, boolean exit) {
-    //            Assert.fail();
-    //        }
-    //    },
-    //    SHORT_APPENDED_2PARAM38("-l", "-p") {
-    //        @Override
-    //        public void checkResult(CliArgumentManagerTest argManager, boolean exit) {
-    //            Assert.fail();
-    //        }
-    //    },
-    //
-    //    SHORT_APPENDED_2PARAM39("-p42") {
-    //        @Override
-    //        public void checkResult(CliArgumentManagerTest argManager, boolean exit) {
-    //            Assert.fail();
-    //        }
-    //    },
-    /*
-     * shortname :
-     * -lpt
-     * 
-     * -ltp
-     * 
-     * -p42
-     * -pl42
-     * -lp42
-     * -lp
-     * -m42 43
-     * -m 42 43
-     * -m 45 TRIP
-     * -m 45 -l
-     * -m 45 -t TRIP
-     * -t T002 42 TRIP 43
-     * 
-     * longname :
-     * --verbose
-     * --port
-     * --port42
-     * --port=42
-     * --port 42
-     * --multi 42 -f
-     * --multi 42 43
-     * --transaction T002 42 TRIP 45
-     * --transaction T002 42 TRIP
-     * --transaction T002 42 TRIP 45 T001 33
-     */
 
 }

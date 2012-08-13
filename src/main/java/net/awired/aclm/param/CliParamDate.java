@@ -10,7 +10,7 @@ public class CliParamDate extends CliParam<Date> {
     private SimpleDateFormat simpleDateFormat;
     private final String     format;
 
-    private CliParamDate(String name, String format) {
+    public CliParamDate(String name, String format) {
         super(name);
         this.format = format;
         simpleDateFormat = new SimpleDateFormat(format);
