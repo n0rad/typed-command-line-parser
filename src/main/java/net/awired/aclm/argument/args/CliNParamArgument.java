@@ -13,6 +13,7 @@ import net.awired.aclm.param.CliParam;
  * @deprecated Not fully Tested
  */
 @Deprecated
+@SuppressWarnings("deprecation")
 public class CliNParamArgument<PARAM_TYPE> extends CliNoParamArgument {
 
     private final List<CliParam<?>>              paramArguments = new ArrayList<CliParam<?>>();

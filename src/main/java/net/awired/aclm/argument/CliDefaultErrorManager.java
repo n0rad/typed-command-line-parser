@@ -47,8 +47,6 @@ public class CliDefaultErrorManager implements CliErrorManager {
 
         // show info
         manager.getUsageDisplayer().displayInfo(manager, manager.getErrorStream());
-
-        System.exit(1); // NOPMD
     }
 
     /**
@@ -68,8 +66,10 @@ public class CliDefaultErrorManager implements CliErrorManager {
         PrintStream errStream = manager.getErrorStream();
 
         if (padding == 0) {
-            errStream.print(manager.getProgramName());
-            errStream.print(": ");
+            if (!manager.getProgramName().isEmpty()) {
+                errStream.print(manager.getProgramName());
+                errStream.print(": ");
+            }
         } else {
             errStream.print("May be the root cause : ");
             errStream.print(manager.getNewLine());
@@ -143,10 +143,9 @@ public class CliDefaultErrorManager implements CliErrorManager {
                 errStream.print('^');
                 errStream.print(manager.getNewLine());
                 break;
-            } else {
-                for (int j = 0; j < args[i].length(); j++) {
-                    errStream.print('_');
-                }
+            }
+            for (int j = 0; j < args[i].length(); j++) {
+                errStream.print('_');
             }
         }
 

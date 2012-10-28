@@ -93,18 +93,11 @@ public class CliTwoParamArgument<PARAM_ONE_TYPE, PARAM_TWO_TYPE> extends CliOneP
         addParamTwoValue(param2);
     }
 
-    /**
-     * @param paramOneDefValue
-     *            the paramOneDefValue to set
-     */
     public void setParamTwoDefValue(PARAM_TWO_TYPE paramTwoDefValue) {
         this.paramTwoDefValues.clear();
         this.paramTwoDefValues.add(paramTwoDefValue);
     }
 
-    /**
-     * @return the paramOneValues
-     */
     public PARAM_TWO_TYPE getParamTwoValue() {
         if (isMulticall()) {
             throw new CliArgumentDefinitionException("for multicall arguments use getParamTwoValues()");
@@ -115,10 +108,6 @@ public class CliTwoParamArgument<PARAM_ONE_TYPE, PARAM_TWO_TYPE> extends CliOneP
         return null;
     }
 
-    /**
-     * @param paramTwoDefValues
-     *            the paramTwoDefValues to set
-     */
     public void setParamTwoDefValues(List<PARAM_TWO_TYPE> paramTwoDefValues) {
         this.paramTwoDefValues.clear();
         this.paramTwoDefValues.addAll(paramTwoDefValues);
@@ -133,30 +122,19 @@ public class CliTwoParamArgument<PARAM_ONE_TYPE, PARAM_TWO_TYPE> extends CliOneP
 
     // ////////////////////////////////////////////////////////////////////////////////////////
 
-    /**
-     * @return the paramOneArgument
-     */
     public CliParam<PARAM_TWO_TYPE> getParamTwoArgument() {
         return paramTwoArgument;
     }
 
-    /**
-     * @return the paramTwoDefValues
-     */
     public List<PARAM_TWO_TYPE> getParamTwoDefValues() {
         return paramTwoDefValues;
     }
 
-    /**
-     * @return the paramTwoValues
-     */
     public List<PARAM_TWO_TYPE> getParamTwoValues() {
         return paramTwoValues;
     }
 
-    /**
-     * @return the numberOfArguments
-     */
+    @Override
     public int getNumberOfParams() {
         return NUMBER_OF_PARAMS;
     }

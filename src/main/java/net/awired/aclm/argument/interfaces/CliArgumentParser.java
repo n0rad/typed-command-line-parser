@@ -3,9 +3,8 @@ package net.awired.aclm.argument.interfaces;
 import net.awired.aclm.argument.CliArgumentManager;
 import net.awired.aclm.argument.CliArgumentParseException;
 
-
 public interface CliArgumentParser {
-    void parse(String[] args, CliArgumentManager manager) throws CliArgumentParseException;
+    boolean parse(String[] args, CliArgumentManager manager) throws CliArgumentParseException;
 
     void setDashIsArgumentOnly(boolean dashIsArgumentOnly);
 

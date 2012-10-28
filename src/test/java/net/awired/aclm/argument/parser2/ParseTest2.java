@@ -8,7 +8,7 @@ import org.junit.Test;
 public class ParseTest2 {
 
     @Rule
-    public ArgRule              argRule = new ArgRule();
+    public ArgRule<ArgumentTestManager2>              argRule = new ArgRule<ArgumentTestManager2>();
 
     public ArgumentTestManager2 manager = new ArgumentTestManager2();
 

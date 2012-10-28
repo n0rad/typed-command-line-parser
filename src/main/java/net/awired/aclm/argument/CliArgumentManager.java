@@ -182,7 +182,10 @@ public class CliArgumentManager {
         }
     }
 
-    public void parse(String[] args) {
+    /**
+     * @return false when you have to stop cause parse fail
+     */
+    public boolean parse(String[] args) {
 
         try {
             checkDefinition();
@@ -192,11 +195,15 @@ public class CliArgumentManager {
             }
             //TODO: clear arguments
 
-            parser.parse(args, this);
+            if (!parser.parse(args, this)) {
+                return false;
+            }
             checkParse();
+            return true;
         } catch (CliArgumentParseException e) {
             // call helper to show usage
             errorManager.usageShowException(args, this, e);
+            return false;
         }
     }
 

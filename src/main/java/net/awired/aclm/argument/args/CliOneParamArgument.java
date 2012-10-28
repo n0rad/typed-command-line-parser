@@ -8,11 +8,11 @@ import net.awired.aclm.param.CliParam;
 
 public class CliOneParamArgument<PARAM_ONE_TYPE> extends CliNoParamArgument {
 
-    private static final int                 NUMBER_OF_PARAMS = 1;
+    private static final int                 NUMBER_OF_PARAMS  = 1;
 
-    private List<PARAM_ONE_TYPE>             paramOneDefValues   = new ArrayList<PARAM_ONE_TYPE>();
+    private List<PARAM_ONE_TYPE>             paramOneDefValues = new ArrayList<PARAM_ONE_TYPE>();
 
-    private List<PARAM_ONE_TYPE>             paramOneValues      = paramOneDefValues;
+    private List<PARAM_ONE_TYPE>             paramOneValues    = paramOneDefValues;
 
     protected final CliParam<PARAM_ONE_TYPE> paramOneArgument;
 
@@ -79,18 +79,11 @@ public class CliOneParamArgument<PARAM_ONE_TYPE> extends CliNoParamArgument {
         addParamOneValue(param1);
     }
 
-    /**
-     * @param paramOneDefValue
-     *            the paramOneDefValue to set
-     */
     public void setParamOneDefValue(PARAM_ONE_TYPE paramOneDefValue) {
         this.paramOneDefValues.clear();
         this.paramOneDefValues.add(paramOneDefValue);
     }
 
-    /**
-     * @return the paramOneValues
-     */
     public PARAM_ONE_TYPE getParamOneValue() {
         if (isMulticall()) {
             throw new CliArgumentDefinitionException("for multicall arguments use getParamOneValues()");
@@ -101,10 +94,6 @@ public class CliOneParamArgument<PARAM_ONE_TYPE> extends CliNoParamArgument {
         return null;
     }
 
-    /**
-     * @param paramOneDefValues
-     *            the paramOneDefValues to set
-     */
     public void setParamOneDefValues(List<PARAM_ONE_TYPE> paramOneDefValues) {
         this.paramOneDefValues.clear();
         this.paramOneDefValues.addAll(paramOneDefValues);
@@ -119,30 +108,19 @@ public class CliOneParamArgument<PARAM_ONE_TYPE> extends CliNoParamArgument {
 
     // ////////////////////////////////////////////////////////////////////////////////////////
 
-    /**
-     * @return the paramOneArgument
-     */
     public CliParam<PARAM_ONE_TYPE> getParamOneArgument() {
         return paramOneArgument;
     }
 
-    /**
-     * @return the paramOneDefValues
-     */
     public List<PARAM_ONE_TYPE> getParamOneDefValues() {
         return paramOneDefValues;
     }
 
-    /**
-     * @return the paramOneValues
-     */
     public List<PARAM_ONE_TYPE> getParamOneValues() {
         return paramOneValues;
     }
 
-    /**
-     * @return the numberOfArguments
-     */
+    @Override
     public int getNumberOfParams() {
         return NUMBER_OF_PARAMS;
     }

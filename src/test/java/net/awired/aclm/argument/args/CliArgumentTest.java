@@ -2,7 +2,6 @@ package net.awired.aclm.argument.args;
 
 import junit.framework.Assert;
 import net.awired.aclm.argument.CliArgumentDefinitionException;
-import net.awired.aclm.argument.args.CliNoParamArgument;
 import net.awired.aclm.argument.interfaces.CliArgument;
 import org.junit.Test;
 
@@ -18,6 +17,7 @@ public class CliArgumentTest {
     }
 
     @Test
+    @SuppressWarnings("unused")
     public void testCliArgument() {
         CliArgument argument = new CliNoParamArgument('s');
         Assert.assertEquals("-s", argument.getShortName());

@@ -12,7 +12,7 @@ import org.junit.Test;
 public class DefinitionTest {
 
     @Rule
-    public ArgRule argRule = new ArgRule();
+    public ArgRule<CliArgumentManager> argRule = new ArgRule<CliArgumentManager>();
 
     @Test
     public void DEF_NAME() {

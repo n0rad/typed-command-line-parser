@@ -106,6 +106,7 @@ public class CliDefaultUsageDisplayer implements CliUsageDisplayer {
     /**
      * @return the usageShort
      */
+    @Override
     public boolean isUsageShort() {
         return usageShort;
     }
@@ -114,6 +115,7 @@ public class CliDefaultUsageDisplayer implements CliUsageDisplayer {
      * @param usageShort
      *            the usageShort to set
      */
+    @Override
     public void setUsageShort(boolean usageShort) {
         this.usageShort = usageShort;
     }

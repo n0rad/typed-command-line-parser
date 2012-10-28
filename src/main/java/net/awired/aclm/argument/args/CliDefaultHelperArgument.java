@@ -45,6 +45,7 @@ public class CliDefaultHelperArgument extends CliNoParamArgument implements CliH
                            Multicall maximum   : 0
                            Default Value       : -p 2006</code>
      */
+    @Override
     public void help(CliArgumentManager manager) {
         PrintStream output = manager.getOutputStream();
         // display usage
@@ -124,7 +125,6 @@ public class CliDefaultHelperArgument extends CliNoParamArgument implements CliH
                 output.print(manager.getNewLine());
             }
         }
-        System.exit(0);
     }
 
     private boolean addArgumentInformations(CliArgumentManager manager, StringBuilder s, CliArgument argument,
@@ -230,8 +230,8 @@ public class CliDefaultHelperArgument extends CliNoParamArgument implements CliH
             }
 
             // default value
-            String defValue = ((CliOneParamArgument<?>) argument).toStringValues(true, argument == manager
-                    .getDefaultArgument());
+            String defValue = ((CliOneParamArgument<?>) argument).toStringValues(true,
+                    argument == manager.getDefaultArgument());
             if (defValue != null) {
                 res = true;
                 StringBuilder buff = new StringBuilder();

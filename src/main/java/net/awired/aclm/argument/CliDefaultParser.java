@@ -30,43 +30,46 @@ public class CliDefaultParser implements CliArgumentParser {
      * @param programName
      *            your program name printed on helper
      */
-    private boolean typeRead = true;
+    private boolean           typeRead                   = true;
 
     /**
      * Scan argument in short form to find if other arguments is appended to it (only working if only one argument in
      * the pool is not a {@link CliNoParamArgument} ).
      * ./toto42 -vf 3
      */
-    private boolean typeScanShortNameArguments = true;
+    private boolean           typeScanShortNameArguments = true;
 
     /**
      * Scan argument in short form to find if a param is appended to it (only working if argument is a
      * {@link CliOneParamArgument}).
      * ./toto42 -r 1 a -f3
      */
-    private boolean typeScanShortName = true;
+    private boolean           typeScanShortName          = true;
 
     /**
      * Scan argument in long form to find if a param is appended to it (only working if argument is a
      * {@link CliOneParamArgument}).
      * ./toto42 -r 1 a --file=3
      */
-    private boolean typeScanLongName = true;
+    private boolean           typeScanLongName           = true;
 
     /**
      * Tell the parser that an argument with a dash (-) can only be an argument and can not be a parameter starting by
      * a dash.
      */
-    private boolean dashIsArgumentOnly = true;
+    private boolean           dashIsArgumentOnly         = true;
 
     private List<CliArgument> arguments;
 
-    private CliArgument defaultArgument;
+    private CliArgument       defaultArgument;
 
     private CliHelperArgument helperArgument;
 
+    /**
+     * @return false when you have to stop cause parse fail
+     */
     @Override
-    public void parse(String[] args, CliArgumentManager manager) throws CliArgumentParseException {
+    public boolean parse(String[] args, CliArgumentManager manager) throws CliArgumentParseException {
         this.defaultArgument = manager.getDefaultArgument();
         this.helperArgument = manager.getHelperArgument();
         this.arguments = manager.getArguments();
@@ -109,8 +112,9 @@ public class CliDefaultParser implements CliArgumentParser {
         }
         if (manager.getHelperArgument().isSet()) {
             manager.getHelperArgument().help(manager);
+            return false;
         }
-
+        return true;
     }
 
     private int parseArgument(String[] args, int position, boolean argStop) throws CliArgumentParseException {
@@ -127,18 +131,17 @@ public class CliDefaultParser implements CliArgumentParser {
                         // -f42 or -xvf filename
                         // FIXME catch exception and continue?
                         return parseShortNameWithAppend(args, position, argument);
-                    } else {
-                        // -f toto titi (normal form)
-                        try {
-                            argument.parse(buildParamsForArgument(args, position + 1, argument));
-                        } catch (CliArgumentParseException e) {
-                            e.setArgsNum(position);
-                            e.setArgsPos(1);
-                            throw e;
-                        }
-                        int readedParsed = parseTypeRead(args, position + 1 + argument.getNumberOfParams(), argument);
-                        return readedParsed + argument.getNumberOfParams();
                     }
+                    // -f toto titi (normal form)
+                    try {
+                        argument.parse(buildParamsForArgument(args, position + 1, argument));
+                    } catch (CliArgumentParseException e) {
+                        e.setArgsNum(position);
+                        e.setArgsPos(1);
+                        throw e;
+                    }
+                    int readedParsed = parseTypeRead(args, position + 1 + argument.getNumberOfParams(), argument);
+                    return readedParsed + argument.getNumberOfParams();
                 }
 
                 if (typeScanLongName && argument.getNumberOfParams() == 1) {
@@ -269,8 +272,7 @@ public class CliDefaultParser implements CliArgumentParser {
                         if (argument2.getNumberOfParams() >= 1) {
                             if (paramedArg != null) {
                                 throw new CliArgumentParseException(
-                                        "Sticked arguments can have only one paramed argument", argument2, position,
-                                        i);
+                                        "Sticked arguments can have only one paramed argument", argument2, position, i);
                             }
                             paramedArgPosition = i;
                             paramedArg = argument2;

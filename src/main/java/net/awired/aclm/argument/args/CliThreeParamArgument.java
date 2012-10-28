@@ -10,6 +10,7 @@ import net.awired.aclm.param.CliParam;
  * @deprecated Not fully Tested
  */
 @Deprecated
+@SuppressWarnings("deprecation")
 public class CliThreeParamArgument<PARAM_ONE_TYPE, PARAM_TWO_TYPE, PARAM_THREE_TYPE> extends
         CliTwoParamArgument<PARAM_ONE_TYPE, PARAM_TWO_TYPE> {
 

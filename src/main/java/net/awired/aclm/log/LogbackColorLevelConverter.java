@@ -44,9 +44,8 @@ public class LogbackColorLevelConverter extends ClassicConverter {
         ColorLevel valueOfLevel = ColorLevel.valueOfLevel(event.getLevel());
         if (valueOfLevel != null) {
             return valueOfLevel.getSequence();
-        } else {
-            return event.getLevel().toString();
         }
+        return event.getLevel().toString();
     }
 
 }

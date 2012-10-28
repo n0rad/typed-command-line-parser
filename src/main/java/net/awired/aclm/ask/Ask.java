@@ -23,12 +23,20 @@ public class Ask<PARAM> {
         this.question = question;
     }
 
+    public static <PARAM> PARAM run(String question, CliParam<PARAM> param) {
+        Ask<PARAM> ask = new Ask<PARAM>(question, param);
+        ask.run();
+        return ask.getValue();
+    }
+
     public void showQuestion() {
         try {
             out.write(question.getBytes());
-            out.write(" (".getBytes());
-            out.write(param.getParamDescription().getBytes());
-            out.write(") ".getBytes());
+            if (param.getParamDescription() != null) {
+                out.write(" (".getBytes());
+                out.write(param.getParamDescription().getBytes());
+                out.write(") ".getBytes());
+            }
             out.write("? ".getBytes());
             if (defaultValue != null) {
                 out.write('[');

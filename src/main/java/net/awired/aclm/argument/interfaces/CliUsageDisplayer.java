@@ -12,4 +12,5 @@ public interface CliUsageDisplayer {
     void displayUsage(CliArgumentManager manager, PrintStream output);
 
     void displayInfo(CliArgumentManager manager, PrintStream output);
+
 }
