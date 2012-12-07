@@ -27,7 +27,7 @@ public class ParseTest {
         argRule.setArgs(new String[] { "-h" });
         argRule.runParser();
 
-        Assert.assertTrue(argRule.exit);
+        Assert.assertFalse(argRule.parseSuccess);
         Assert.assertEquals(1, argRule.manager.getHelperArgument().getNumCall());
         Assert.assertEquals("Usage: enumArgumentTest [ -amvlps ] [ transactions num ]\n"
                 + "  -a=ip num...             Set the server address where to connect and this part\n"
@@ -70,7 +70,7 @@ public class ParseTest {
         // -v
         Assert.assertEquals(1, manager.verbose.getNumCall());
 
-        Assert.assertFalse(argRule.exit);
+        Assert.assertTrue(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("", argRule.err);
     }
@@ -82,7 +82,7 @@ public class ParseTest {
         // -l
         Assert.assertEquals(4, manager.loop.getNumCall());
 
-        Assert.assertFalse(argRule.exit);
+        Assert.assertTrue(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("", argRule.err);
     }
@@ -92,7 +92,7 @@ public class ParseTest {
         argRule.setArgs(new String[] { "-l", "-l", "-l", "-l", "-l" });
         argRule.runParser();
 
-        Assert.assertTrue(argRule.exit);
+        Assert.assertFalse(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("enumArgumentTest: argument must be called maximum 4 times -- [ -l ... ]\n"
                 + "  enumArgumentTest -l -l -l -l -l\n" + "________________________________^\n"
@@ -105,7 +105,7 @@ public class ParseTest {
         argRule.setArgs(new String[] { "-lllll" });
         argRule.runParser();
 
-        Assert.assertTrue(argRule.exit);
+        Assert.assertFalse(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("enumArgumentTest: argument must be called maximum 4 times -- [ -l ... ]\n"
                 + "  enumArgumentTest -lllll\n" + "________________________^\n"
@@ -120,7 +120,7 @@ public class ParseTest {
 
         Assert.assertEquals(4, manager.loop.getNumCall());
 
-        Assert.assertFalse(argRule.exit);
+        Assert.assertTrue(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("", argRule.err);
     }
@@ -135,7 +135,7 @@ public class ParseTest {
         // -v
         Assert.assertEquals(1, manager.verbose.getNumCall());
 
-        Assert.assertFalse(argRule.exit);
+        Assert.assertTrue(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("", argRule.err);
     }
@@ -145,7 +145,7 @@ public class ParseTest {
         argRule.setArgs(new String[] { "-lz" });
         argRule.runParser();
 
-        Assert.assertTrue(argRule.exit);
+        Assert.assertFalse(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("enumArgumentTest: Argument does not exists : 'z'\n" //
                 + "  enumArgumentTest -lz\n" //
@@ -159,7 +159,7 @@ public class ParseTest {
         argRule.setArgs(new String[] { "-lvp" });
         argRule.runParser();
 
-        Assert.assertTrue(argRule.exit);
+        Assert.assertFalse(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("enumArgumentTest: Param(s) not found after argument -- [ -p port ]\n" //
                 + "  enumArgumentTest -lvp\n" //
@@ -173,7 +173,7 @@ public class ParseTest {
         argRule.setArgs(new String[] { "-lpv" });
         argRule.runParser();
 
-        Assert.assertTrue(argRule.exit);
+        Assert.assertFalse(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("enumArgumentTest: Param(s) not found after argument -- [ -p port ]\n" //
                 + "  enumArgumentTest -lpv\n" //
@@ -195,7 +195,7 @@ public class ParseTest {
         Assert.assertEquals(1, manager.port.getNumCall());
         Assert.assertEquals((Integer) 42, manager.port.getParamOneValue());
 
-        Assert.assertFalse(argRule.exit);
+        Assert.assertTrue(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("", argRule.err);
     }
@@ -213,7 +213,7 @@ public class ParseTest {
         Assert.assertEquals(1, manager.port.getNumCall());
         Assert.assertEquals((Integer) 42, manager.port.getParamOneValue());
 
-        Assert.assertFalse(argRule.exit);
+        Assert.assertTrue(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("", argRule.err);
     }
@@ -223,7 +223,7 @@ public class ParseTest {
         argRule.setArgs(new String[] { "-lvp", "-l" });
         argRule.runParser();
 
-        Assert.assertTrue(argRule.exit);
+        Assert.assertFalse(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("enumArgumentTest: -l is not a valid Integer -- [ -p port ]\n" //
                 + "  enumArgumentTest -lvp -l\n" //
@@ -237,7 +237,7 @@ public class ParseTest {
         argRule.setArgs(new String[] { "-lp" });
         argRule.runParser();
 
-        Assert.assertTrue(argRule.exit);
+        Assert.assertFalse(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("enumArgumentTest: Param(s) not found after argument -- [ -p port ]\n" //
                 + "  enumArgumentTest -lp\n" //
@@ -260,7 +260,7 @@ public class ParseTest {
         Assert.assertEquals(1, manager.port.getNumCall());
         Assert.assertEquals((Integer) 42, manager.port.getParamOneValue());
 
-        Assert.assertFalse(argRule.exit);
+        Assert.assertTrue(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("", argRule.err);
     }
@@ -270,7 +270,7 @@ public class ParseTest {
         argRule.setArgs(new String[] { "-lpvz", "42" });
         argRule.runParser();
 
-        Assert.assertTrue(argRule.exit);
+        Assert.assertFalse(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("enumArgumentTest: Argument does not exists : 'z'\n" //
                 + "  enumArgumentTest -lpvz 42\n" //
@@ -284,7 +284,7 @@ public class ParseTest {
         argRule.setArgs(new String[] { "-lps" });
         argRule.runParser();
 
-        Assert.assertTrue(argRule.exit);
+        Assert.assertFalse(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("enumArgumentTest: Param(s) not found after argument -- [ -p port ]\n" //
                 + "  enumArgumentTest -lps\n" //
@@ -298,7 +298,7 @@ public class ParseTest {
         argRule.setArgs(new String[] { "-lps", "42", "TRIP_1_2_6" });
         argRule.runParser();
 
-        Assert.assertTrue(argRule.exit);
+        Assert.assertFalse(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals(
                 "enumArgumentTest: Sticked arguments can have only one paramed argument -- [ -s scenario ]\n" //
@@ -323,7 +323,7 @@ public class ParseTest {
         // -l
         Assert.assertEquals(2, manager.loop.getNumCall());
 
-        Assert.assertFalse(argRule.exit);
+        Assert.assertTrue(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("", argRule.err);
     }
@@ -339,7 +339,7 @@ public class ParseTest {
         Assert.assertEquals(1, manager.port.getNumCall());
         Assert.assertEquals((Integer) 42, manager.port.getParamOneValue());
 
-        Assert.assertFalse(argRule.exit);
+        Assert.assertTrue(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("", argRule.err);
     }
@@ -349,7 +349,7 @@ public class ParseTest {
         argRule.setArgs(new String[] { "-lpz", "z" });
         argRule.runParser();
 
-        Assert.assertTrue(argRule.exit);
+        Assert.assertFalse(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("enumArgumentTest: z is not a valid Integer -- [ -p port ]\n" //
                 + "  enumArgumentTest -lpz z\n" // 
@@ -367,7 +367,7 @@ public class ParseTest {
         argRule.setArgs(new String[] { "-lpa", "127.0.0.1", "43" });
         argRule.runParser();
 
-        Assert.assertTrue(argRule.exit);
+        Assert.assertFalse(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("enumArgumentTest: 127.0.0.1 is not a valid Integer -- [ -p port ]\n" //
                 + "  enumArgumentTest -lpa 127.0.0.1 43\n" //

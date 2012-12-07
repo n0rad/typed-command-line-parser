@@ -8,9 +8,9 @@ import org.junit.Test;
 public class ParseTest2 {
 
     @Rule
-    public ArgRule<ArgumentTestManager2>              argRule = new ArgRule<ArgumentTestManager2>();
+    public ArgRule<ArgumentTestManager2> argRule = new ArgRule<ArgumentTestManager2>();
 
-    public ArgumentTestManager2 manager = new ArgumentTestManager2();
+    public ArgumentTestManager2          manager = new ArgumentTestManager2();
 
     public ParseTest2() {
         argRule.manager = manager;
@@ -21,7 +21,7 @@ public class ParseTest2 {
         argRule.setArgs(new String[] { "erftest" });
         argRule.runParser();
 
-        Assert.assertTrue(argRule.exit);
+        Assert.assertFalse(argRule.parseSuccess);
         Assert.assertEquals("", argRule.out);
         Assert.assertEquals("enumArgumentTest: no default argument to parse : erftest\n"
                 + "Usage: enumArgumentTest [ -a ip num ][ -m int ... ][ -v ][ -l ... ][ -p port ][ -s scenario ]\n"

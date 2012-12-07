@@ -183,9 +183,9 @@ public class CliArgumentManager {
     }
 
     /**
-     * @return false when you have to stop cause parse fail
+     * @return false when process fail
      */
-    public boolean parse(String[] args) {
+    public boolean parseWithSuccess(String[] args) {
 
         try {
             checkDefinition();
@@ -195,7 +195,7 @@ public class CliArgumentManager {
             }
             //TODO: clear arguments
 
-            if (!parser.parse(args, this)) {
+            if (!parser.parseWithSuccess(args, this)) {
                 return false;
             }
             checkParse();

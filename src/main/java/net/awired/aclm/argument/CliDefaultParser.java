@@ -69,7 +69,7 @@ public class CliDefaultParser implements CliArgumentParser {
      * @return false when you have to stop cause parse fail
      */
     @Override
-    public boolean parse(String[] args, CliArgumentManager manager) throws CliArgumentParseException {
+    public boolean parseWithSuccess(String[] args, CliArgumentManager manager) throws CliArgumentParseException {
         this.defaultArgument = manager.getDefaultArgument();
         this.helperArgument = manager.getHelperArgument();
         this.arguments = manager.getArguments();
@@ -109,6 +109,7 @@ public class CliDefaultParser implements CliArgumentParser {
                 e.setCurrentArgument(currentArgument);
             }
             manager.getErrorManager().usageShowException(args, manager, e);
+            return false;
         }
         if (manager.getHelperArgument().isSet()) {
             manager.getHelperArgument().help(manager);

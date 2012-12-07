@@ -2,21 +2,19 @@ package net.awired.aclm.help;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.security.Permission;
 import net.awired.aclm.argument.CliArgumentManager;
 import org.junit.rules.ExternalResource;
 
 public class ArgRule<T extends CliArgumentManager> extends ExternalResource {
-    private boolean parseInProgress = false;
     public ByteArrayOutputStream outStream;
     public ByteArrayOutputStream errStream;
 
-    public T manager;
-    private String[] args = new String[] {};
+    public T                     manager;
+    private String[]             args = new String[] {};
 
-    public String out;
-    public String err;
-    public boolean exit;
+    public String                out;
+    public String                err;
+    public boolean               parseSuccess;
 
     public void runParser() {
         outStream = new ByteArrayOutputStream();
@@ -24,45 +22,18 @@ public class ArgRule<T extends CliArgumentManager> extends ExternalResource {
         manager.setOutputStream(new PrintStream(outStream));
         manager.setErrorStream(new PrintStream(errStream));
 
-        try {
-            parseInProgress = true;
-            System.out.print("running args :");
-            for (String arg : args) {
-                System.out.print(" ");
-                System.out.print(arg);
-            }
-            System.out.println();
-            manager.parse(args);
-        } catch (MyExitException e) {
-            exit = true;
-        } finally {
-            parseInProgress = false;
+        System.out.print("running args :");
+        for (String arg : args) {
+            System.out.print(" ");
+            System.out.print(arg);
         }
+        System.out.println();
+        parseSuccess = manager.parseWithSuccess(args);
 
         err = errStream.toString();
         out = outStream.toString();
         System.out.println(out);
         System.err.println(err);
-    }
-
-    @Override
-    protected void before() throws Throwable {
-        SecurityManager securityManager = new SecurityManager() {
-            @Override
-            public void checkPermission(Permission permission) {
-                if (parseInProgress && permission instanceof RuntimePermission
-                        && permission.getName().startsWith("exitVM")) {
-                    throw new MyExitException();
-                }
-            }
-        };
-        System.setSecurityManager(securityManager);
-    }
-
-    @Override
-    protected void after() {
-        this.parseInProgress = false;
-        System.setSecurityManager(null);
     }
 
     //////////////////////////////////////////////////////

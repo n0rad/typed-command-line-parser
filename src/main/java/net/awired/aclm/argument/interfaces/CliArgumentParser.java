@@ -4,7 +4,7 @@ import net.awired.aclm.argument.CliArgumentManager;
 import net.awired.aclm.argument.CliArgumentParseException;
 
 public interface CliArgumentParser {
-    boolean parse(String[] args, CliArgumentManager manager) throws CliArgumentParseException;
+    boolean parseWithSuccess(String[] args, CliArgumentManager manager) throws CliArgumentParseException;
 
     void setDashIsArgumentOnly(boolean dashIsArgumentOnly);
 
