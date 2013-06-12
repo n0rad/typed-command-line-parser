@@ -1,7 +1,7 @@
-Awired Command Line Manager
+Typed command line parser
 ===========================
 
-ACLM is a Command Line Interface management library, where the main functionnality is a argument parser.
+Typed command line parser
 
 Functionalities
 ===============

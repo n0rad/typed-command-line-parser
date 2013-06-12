@@ -2,32 +2,23 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>net.awired.aclm</groupId>
-	<artifactId>aclm</artifactId>
+	<groupId>net.awired.typed.command.line.parser</groupId>
+	<artifactId>typed-command-line-parser</artifactId>
+	<name>Typed command line parser</name>
+	<description>Fully typed command line parser</description>
+	<packaging>jar</packaging>
 	<version>0.2.1-SNAPSHOT</version>
 
-	<packaging>jar</packaging>
-	<name>Awired Command Line Manager</name>
-	<description>Better command line manager for java applications</description>
-	<url>https://github.com/awired/aclm</url>
-
 	<parent>
-		<groupId>net.awired.parent.parent-java</groupId>
+		<groupId>net.awired.parent</groupId>
 		<artifactId>parent-java</artifactId>
-		<version>1.13</version>
+		<version>1.16</version>
 	</parent>
 
-	<developers>
-		<developer>
-			<id>n0rad</id>
-			<name>Arnaud Lemaire</name>
-			<email>dev@norad.fr</email>
-		</developer>
-	</developers>
 	<scm>
-		<connection>scm:git:git://github.com/awired/aclm.git</connection>
-		<developerConnection>scm:git:git@github.com:awired/aclm.git</developerConnection>
-		<url>http://github.com/awired/aclm</url>
+		<connection>scm:git:git://github.com/awired/typed-command-line-parser.git</connection>
+		<developerConnection>scm:git:git@github.com:awired/typed-command-line-parser.git</developerConnection>
+		<url>http://github.com/awired/typed-command-line-parser</url>
 	</scm>
 
 	<dependencies>
