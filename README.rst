@@ -3,6 +3,15 @@ Typed command line parser
 
 Typed command line parser
 
+
+::
+
+    <dependency>
+        <groupId>fr.norad.typed.command.line.parser</groupId>
+        <artifactId>typed-command-line-parser</artifactId>
+        <version>0.3</version>
+    </dependency>
+
 Functionalities
 ===============
 
