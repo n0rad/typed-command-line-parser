@@ -59,97 +59,55 @@ public class CliParamFile extends CliParam<File> {
         return f;
     }
 
-    /**
-     * @return the canRead
-     */
     public Boolean getCanRead() {
         return canRead;
     }
 
-    /**
-     * @param canRead
-     *            the canRead to set
-     */
     public CliParamFile setCanRead(Boolean canRead) {
         this.canRead = canRead;
         return this;
     }
 
-    /**
-     * @return the canWrite
-     */
     public Boolean getCanWrite() {
         return canWrite;
     }
 
-    /**
-     * @param canWrite
-     *            the canWrite to set
-     */
     public CliParamFile setCanWrite(Boolean canWrite) {
         this.canWrite = canWrite;
         return this;
     }
 
-    /**
-     * @return the canExecute
-     */
     public Boolean getCanExecute() {
         return canExecute;
     }
 
-    /**
-     * @param canExecute
-     *            the canExecute to set
-     */
     public CliParamFile setCanExecute(Boolean canExecute) {
         this.canExecute = canExecute;
         return this;
     }
 
-    /**
-     * @return the isDirectory
-     */
     public Boolean getIsDirectory() {
         return isDirectory;
     }
 
-    /**
-     * @param isDirectory
-     *            the isDirectory to set
-     */
     public CliParamFile setIsDirectory(Boolean isDirectory) {
         this.isDirectory = isDirectory;
         return this;
     }
 
-    /**
-     * @return the isFile
-     */
     public Boolean getIsFile() {
         return isFile;
     }
 
-    /**
-     * @param isFile
-     *            the isFile to set
-     */
     public CliParamFile setIsFile(Boolean isFile) {
         this.isFile = isFile;
         return this;
     }
 
-    /**
-     * @return the isHidden
-     */
     public Boolean getIsHidden() {
         return isHidden;
     }
 
-    /**
-     * @param isHidden
-     *            the isHidden to set
-     */
     public CliParamFile setIsHidden(Boolean isHidden) {
         this.isHidden = isHidden;
         return this;

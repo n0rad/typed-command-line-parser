@@ -53,16 +53,18 @@ public class CliParamLong extends CliParam<Long> {
         return zeroable;
     }
 
-    public void setZeroable(boolean zeroable) {
+    public CliParamLong setZeroable(boolean zeroable) {
         this.zeroable = zeroable;
+        return this;
     }
 
     public boolean isNegativable() {
         return negativable;
     }
 
-    public void setNegativable(boolean negativable) {
+    public CliParamLong setNegativable(boolean negativable) {
         this.negativable = negativable;
+        return this;
     }
 
 }

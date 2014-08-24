@@ -49,34 +49,22 @@ public class CliParamInt extends CliParam<Integer> {
 
     //////////////////////////////////////////////////////////
 
-    /**
-     * @return the zeroable
-     */
     public boolean isZeroable() {
         return zeroable;
     }
 
-    /**
-     * @param zeroable
-     *            the zeroable to set
-     */
-    public void setZeroable(boolean zeroable) {
+    public CliParamInt setZeroable(boolean zeroable) {
         this.zeroable = zeroable;
+        return this;
     }
 
-    /**
-     * @return the negativable
-     */
     public boolean isNegativable() {
         return negativable;
     }
 
-    /**
-     * @param negativable
-     *            the negativable to set
-     */
-    public void setNegativable(boolean negativable) {
+    public CliParamInt setNegativable(boolean negativable) {
         this.negativable = negativable;
+        return this;
     }
 
 }

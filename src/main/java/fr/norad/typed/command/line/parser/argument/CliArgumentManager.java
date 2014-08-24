@@ -249,8 +249,12 @@ public class CliArgumentManager {
      * 
      * @param argument
      */
-    public final void addArg(CliArgument argument) {
+    public final <T extends CliArgument> T addArg(T argument) {
+        if (argument == null) {
+            throw new NullPointerException("Argument must exists");
+        }
         arguments.add(argument);
+        return argument;
     }
 
     /**

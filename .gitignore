@@ -6,3 +6,4 @@ target
 .settings
 test-output
 /META-INF
+*.iml

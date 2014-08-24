@@ -31,7 +31,7 @@ public class CliParamInetAddress extends CliParam<InetAddress> {
         try {
             return InetAddress.getByName(param);
         } catch (UnknownHostException e) {
-            throw new CliArgumentParseException(e.getMessage());
+            throw new CliArgumentParseException("bad inet address : " + e.getMessage());
 
         }
     }

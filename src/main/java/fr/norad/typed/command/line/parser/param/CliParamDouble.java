@@ -49,34 +49,22 @@ public class CliParamDouble extends CliParam<Double> {
 
     //////////////////////////////////////////////////////////
 
-    /**
-     * @return the zeroable
-     */
     public boolean isZeroable() {
         return zeroable;
     }
 
-    /**
-     * @param zeroable
-     *            the zeroable to set
-     */
-    public void setZeroable(boolean zeroable) {
+    public CliParamDouble setZeroable(boolean zeroable) {
         this.zeroable = zeroable;
+        return this;
     }
 
-    /**
-     * @return the negativable
-     */
     public boolean isNegativable() {
         return negativable;
     }
 
-    /**
-     * @param negativable
-     *            the negativable to set
-     */
-    public void setNegativable(boolean negativable) {
+    public CliParamDouble setNegativable(boolean negativable) {
         this.negativable = negativable;
+        return this;
     }
 
 }

@@ -223,6 +223,9 @@ public class CliNoParamArgument implements CliArgument {
     }
 
     public void addForbiddenArgument(CliArgument argument) {
+        if (argument == null) {
+            throw new NullPointerException("Forbidden argument must exists");
+        }
         if (argument == this) {
             throw new CliArgumentDefinitionException("argument can not contain himself as forbidden");
         }
@@ -230,6 +233,9 @@ public class CliNoParamArgument implements CliArgument {
     }
 
     public void addNeededArgument(CliArgument argument) {
+        if (argument == null) {
+            throw new NullPointerException("Needed argument must exists");
+        }
         if (argument == this) {
             throw new CliArgumentDefinitionException("argument can not contain himself as needed");
         }
