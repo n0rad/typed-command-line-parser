@@ -11,7 +11,7 @@
 	<parent>
 		<groupId>fr.norad.parent</groupId>
 		<artifactId>parent-java</artifactId>
-		<version>1.18</version>
+		<version>1.19</version>
 	</parent>
 
 	<scm>
