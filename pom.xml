@@ -6,12 +6,12 @@
 	<name>Typed command line parser</name>
 	<description>Fully typed command line parser</description>
 	<packaging>jar</packaging>
-	<version>0.5-SNAPSHOT</version>
+	<version>0.4-SNAPSHOT</version>
 
 	<parent>
 		<groupId>fr.norad.parent</groupId>
 		<artifactId>parent-java</artifactId>
-		<version>1.19</version>
+		<version>1.18</version>
 	</parent>
 
 	<scm>
