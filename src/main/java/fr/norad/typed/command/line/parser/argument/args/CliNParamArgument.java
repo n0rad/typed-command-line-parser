@@ -153,10 +153,6 @@ public class CliNParamArgument<PARAM_TYPE> extends CliNoParamArgument {
         //        }
     }
 
-    /**
-     * @param paramTwoDefValues
-     *            the paramTwoDefValues to set
-     */
     public void setParamDefaultValues(CliParam<?> param, List<Object> values) {
         defaultValues.put(param, values);
         reset();

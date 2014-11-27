@@ -127,8 +127,8 @@ public class CliThreeParamArgument<PARAM_ONE_TYPE, PARAM_TWO_TYPE, PARAM_THREE_T
     }
 
     /**
-     * @param paramOneDefValue
-     *            the paramOneDefValue to set
+     * @param paramThreeDefValue
+     *            the paramThreeDefValue to set
      */
     public void setParamThreeDefValue(PARAM_THREE_TYPE paramThreeDefValue) {
         this.paramThreeDefValues.clear();
@@ -149,7 +149,7 @@ public class CliThreeParamArgument<PARAM_ONE_TYPE, PARAM_TWO_TYPE, PARAM_THREE_T
     }
 
     /**
-     * @param paramTwoDefValues
+     * @param paramThreeDefValues
      *            the paramTwoDefValues to set
      */
     public void setParamThreeDefValues(List<PARAM_THREE_TYPE> paramThreeDefValues) {

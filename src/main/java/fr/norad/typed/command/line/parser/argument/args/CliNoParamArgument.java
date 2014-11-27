@@ -92,7 +92,7 @@ public class CliNoParamArgument implements CliArgument {
      * 
      * Sort is done in ascii order with uppercase just after lowercase of same character.
      * 
-     * @param other
+     * @param other the other param
      * @return the comparison result
      */
     @Override

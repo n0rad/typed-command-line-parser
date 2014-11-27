@@ -72,6 +72,7 @@ public class CliArgumentManager {
      * Default argument manager constructor.
      * The default constructor of {@link CliArgumentManager} add the argument
      * helper --help (-h) to the list of arguments.
+     * @param programName name of the program for helper
      */
     protected CliArgumentManager(String programName) {
 
@@ -97,16 +98,7 @@ public class CliArgumentManager {
             }
         }
     }
-
-    /**
-     * Check that argument that needs argument did not forbid a far needed
-     * argument.
-     * 
-     * @param current
-     *            The current argument
-     * @param toCheck
-     *            Argument to check (used by recursion) for first use set current twice
-     */
+    
     public void checkCircularWithForbidden(CliArgument current) {
         // get neededd rec for this argument
         Set<CliArgument> neededRec = new HashSet<CliArgument>();
@@ -200,6 +192,7 @@ public class CliArgumentManager {
 
     /**
      * @return false when process fail
+     * @param args the argument from the command line
      */
     public boolean parseWithSuccess(String[] args) {
 
@@ -246,8 +239,9 @@ public class CliArgumentManager {
 
     /**
      * Add an argument to argument list.
-     * 
-     * @param argument
+     *
+     * @param argument the new argument
+     * @return argument for DSL
      */
     public final <T extends CliArgument> T addArg(T argument) {
         if (argument == null) {
