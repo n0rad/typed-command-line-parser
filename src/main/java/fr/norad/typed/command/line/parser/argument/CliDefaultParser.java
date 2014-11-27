@@ -165,7 +165,8 @@ public class CliDefaultParser implements CliArgumentParser {
                     // long name with appended
                     if (args[position].startsWith(argument.getName() + "=")) {
                         // --file-name=filename.txt
-                        return parseLongName(argument, argument.getName(), args[position]);
+                        parseLongName(argument, argument.getName(), args[position]);
+                        return 0;
                     }
 
                     // hidden names
